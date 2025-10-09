@@ -1,0 +1,135 @@
+.glassmorph-bg {
+    width: 400px;
+    height: 400px;
+    background: rgba(20, 40, 67, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 2rem;
+}
+
+.glassmorph-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(20, 40, 67, 0.4),
+            transparent);
+}
+
+.glassmorph-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg,
+            rgba(20, 40, 67, 0.4),
+            transparent,
+            rgba(20, 40, 67, 0.1));
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+.form-fields .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-field label {
+    color: #fff;
+    opacity: 0.8;
+}
+
+.form-field input {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: #142843;
+    opacity: 0.5;
+    border: 0;
+    height: 30px;
+    color: #fff;
+}
+
+.forgot-password {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10rem;
+    margin-top: 2rem;
+}
+
+.forgot-password p {
+    font-family: "Poppins", sans-serif;
+    font-size: .8rem;
+    font-weight: 300;
+    font-style: normal;
+    color: #fff;
+}
+
+.login-sub-description {
+    text-align: center;
+    color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+    .glassmorph-bg {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .glassmorph-bg {
+        width: 600px;
+        height: 400px;
+        padding: 2rem;
+    }
+    .forgot-password {
+        margin-top: 1rem;
+        column-gap: 23rem;
+    }
+    .forgot-password p {
+        font-size: 0.8rem;
+    }
+    .login-sub-description {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .glassmorph-bg {
+        width: 100%;
+        max-width: 350px;
+        height: 400px;
+        padding: 2rem;
+        margin-left: -2rem;
+    }
+    .form-fields {
+        row-gap: 1rem;
+    }
+    .form-field input {
+        height: 36px;
+        opacity: 0.8;
+    }
+    .forgot-password {
+        column-gap: 2rem;
+        margin-top: 1rem;
+    }
+    .forgot-password p,
+    .login-sub-description {
+        font-size: 0.75rem;
+    }
+}

@@ -1,0 +1,11 @@
+.login {
+    background: #FFAE2C;
+    border: 0;
+    box-shadow: none;
+    width: 100%;
+    padding: 9px 2px;
+    border-radius: 7px;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 1rem;
+}

@@ -1,0 +1,47 @@
+.sso-login {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 2rem;
+    margin-left: 6.5rem;
+}
+
+.icon-circle {
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+
+.sso-login img {
+    width: 30px;
+    height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .sso-login {
+        margin-left: 12.5rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sso-login {
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 1.5rem;
+        gap: 10px;
+    }
+    .icon-circle {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+    }
+    .sso-login img {
+        width: 36px;
+        height: 36px;
+    }
+}
