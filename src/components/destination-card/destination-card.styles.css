@@ -1,0 +1,58 @@
+.destination-card {
+    width: 400px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* margin: 3rem 1rem; */
+    padding: 1.2rem;
+    border-radius: 30px;
+
+}
+
+.destination-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.destination-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.package-description {
+    margin-top: 1.5rem;
+}
+
+.package-description h2,
+.package-description p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: .7;
+}
+
+.package-description p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.destination-card .icon-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.destination-card .icon-row .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-row .icon p {
+    margin: 0;
+}

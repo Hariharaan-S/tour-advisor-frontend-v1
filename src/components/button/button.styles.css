@@ -1,4 +1,6 @@
-.login {
+.login,
+.register,
+.default {
     background: #FFAE2C;
     border: 0;
     box-shadow: none;
@@ -8,4 +10,19 @@
     font-family: "Poppins", sans-serif;
     font-style: normal;
     font-size: 1rem;
+    cursor: pointer;
+}
+
+.default {
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: white;
+    background: #DF8900;
+    font-weight: 300;
+    width: auto;
+    transition: background 0.3s ease;
+}
+
+.default:hover {
+    background: #c17803;
 }

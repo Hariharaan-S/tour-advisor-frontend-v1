@@ -1,0 +1,59 @@
+.navbar {
+    height: 70px;
+    width: calc(100% - 70px);
+    margin: 1rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: absolute;
+    z-index: 2;
+}
+
+.navbar .logo {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.navbar .logo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.navbar ul li {
+    cursor: pointer;
+    color: #b2b2b2;
+    transition: color 0.3s;
+}
+
+.navbar ul li:hover {
+    color: #FFF;
+}
+
+.navbar .user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.navbar .user-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

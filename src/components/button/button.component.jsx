@@ -3,12 +3,13 @@ import './button.styles.css'
 
 const buttonTypes = {
     'login': 'login',
-    'register': 'register'
+    'register': 'register',
+    'default': 'default'
 }
 
-const Button = ({ buttonType, buttonValue }) => {
+const Button = ({ buttonType, buttonValue, customStyle }) => {
     return (
-        <button className={buttonTypes[buttonType]} type="submit">{buttonValue}</button>
+        <button style={{ ...customStyle }} className={buttonTypes[buttonType]} type="submit">{buttonValue}</button>
     )
 }
 
