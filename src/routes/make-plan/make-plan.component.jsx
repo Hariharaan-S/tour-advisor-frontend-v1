@@ -1,6 +1,5 @@
 import React from "react";
 import './make-plan.styles.css';
-import Navbar from "../../components/navbar/navbar.component";
 import PlacesList from "../../components/places-list/places-list.component";
 import Footer from "../../components/footer/footer.component";
 import Button from "../../components/button/button.component";
@@ -8,7 +7,6 @@ import Button from "../../components/button/button.component";
 const MakePlan = () => {
     return (
         <>
-            <Navbar />
             <div className="plan-container">
                 {/* Left: Form */}
                 <div className="plan-form-container">

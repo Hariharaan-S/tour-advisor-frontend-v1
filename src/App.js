@@ -5,6 +5,8 @@ import Signup from './routes/signup/signup.component';
 import Home from './routes/home/home.component';
 import PlacesToVisit from './routes/places-to-visit/places-to-visit.component';
 import MakePlan from './routes/make-plan/make-plan.component';
+import ItineraryDetails from './routes/itinerary-details/itinerary-details.component';
+import Navbar from './components/navbar/navbar.component';
 
 function App() {
   return (
@@ -12,9 +14,12 @@ function App() {
     <Routes>
       <Route path='/login' element={<Login />}></Route>
       <Route path='/register' element={<Signup />}></Route>
-      <Route path='/' element={<Home />}></Route>
-      <Route path='/places-to-visit' element={<PlacesToVisit />}></Route>
-      <Route path='/make-plan' element={<MakePlan />}></Route>
+      <Route path='/' element={<Navbar />}>
+        <Route index element={<Home />}></Route>
+        <Route path='/places-to-visit' element={<PlacesToVisit />}></Route>
+        <Route path='/make-plan' element={<MakePlan />}></Route>
+        <Route path='/plan' element={<ItineraryDetails />}></Route>
+      </Route>
     </Routes>
 
   );

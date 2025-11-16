@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.styles.css";
 import Logo from "../logo/logo.component";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -21,11 +22,11 @@ const Footer = () => {
 
                 <div className="footer-sitemap">
                     <ul className="footer-site-list">
-                        <li className="footer-site-item">Home</li>
-                        <li className="footer-site-item">Visit Places</li>
-                        <li className="footer-site-item">Plan Trip</li>
-                        <li className="footer-site-item">About Us</li>
-                        <li className="footer-site-item">Contact Us</li>
+                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/'}><li className="footer-site-item">Home</li></Link>
+                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/places-to-visit'}><li className="footer-site-item">Visit Places</li></Link>
+                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/make-plan'}><li className="footer-site-item">Plan Trip</li></Link>
+                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/'}><li className="footer-site-item">About Us</li></Link>
+                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/'}><li className="footer-site-item">Contact Us</li></Link>
                     </ul>
                 </div>
 
