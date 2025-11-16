@@ -9,8 +9,8 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <HeroSection />
-            <FloatSection />
+            <HeroSection title="Travel Made Simple" description="Plan, organize, and enjoy trips without the hassle." cta="Start your plan" bgImage="img/landing-page-hero.png" />
+            <FloatSection floatSectionTitle={"Make Your Perfect Plan"} floatSectionDescription={"From routes to stays — everything in one place."} />
             <TopCities />
             <Footer />
         </div>

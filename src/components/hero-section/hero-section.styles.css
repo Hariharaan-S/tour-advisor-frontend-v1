@@ -10,7 +10,6 @@
 
 .landing-page-hero-section {
     height: 90vh;
-    background-image: url('../../../public/img/landing-page-hero.png');
     background-size: cover;
     background-position: center;
     display: flex;
