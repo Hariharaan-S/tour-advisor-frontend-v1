@@ -1,0 +1,270 @@
+.trip-iti-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    z-index: 1;
+}
+
+/* Trip Itineraries Section */
+.trip-itineraries {
+    padding: 3rem 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.trip-itineraries h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Itineraries Wrapper */
+.itineraries-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* Marker Column */
+.marker-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 30px;
+}
+
+.marker {
+    width: 14px;
+    height: 14px;
+    background-color: #666;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-bottom: 2rem;
+}
+
+.line {
+    width: 2px;
+    flex-grow: 1;
+    background-color: #ccc;
+    min-height: 300px;
+    position: absolute;
+    top: 7px;
+    left: 6px;
+}
+
+/* Itinerary Cards */
+.itinerary-cards {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    padding-left: 0;
+}
+
+.itinerary-card {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+.itinerary-card h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+}
+
+/* Itinerary Details */
+.itineraries-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-left: 0;
+}
+
+.detail {
+    padding: 0;
+    background-color: transparent;
+    border-left: none;
+    border-radius: 0;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    transition: none;
+}
+
+.detail:hover {
+    background-color: transparent;
+}
+
+.detail p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.time {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.95rem;
+    min-width: 80px;
+}
+
+.instruction {
+    color: #333;
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin: 0;
+    flex: 1;
+    white-space: normal;
+}
+
+.location {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+    text-align: right;
+    min-width: 100px;
+}
+
+.location a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 2px;
+}
+
+.location a:hover {
+    color: #ffd93d;
+    border-bottom-color: #ffd93d;
+}
+
+/* Button Styles */
+.trip-itineraries > button {
+    display: block;
+    margin: 2rem 0 0 auto;
+    padding: 0.8rem 2.5rem;
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.trip-itineraries > button:hover {
+    background-color: #ffb300;
+    transform: scale(1.02);
+}
+
+.trip-itineraries > button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .itineraries-wrapper {
+        gap: 1rem;
+    }
+
+    .trip-itineraries {
+        padding: 2rem 1rem;
+    }
+
+    .trip-itineraries h2 {
+        font-size: 1.5rem;
+    }
+
+    .detail {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .time {
+        min-width: 70px;
+        font-size: 0.9rem;
+    }
+
+    .instruction {
+        font-size: 0.9rem;
+    }
+
+    .location {
+        font-size: 0.9rem;
+        min-width: 80px;
+    }
+
+    .line {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .marker-column {
+        min-width: 20px;
+    }
+
+    .marker {
+        width: 12px;
+        height: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    .line {
+        width: 1.5px;
+        min-height: 150px;
+        left: 4px;
+    }
+
+    .detail {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .trip-itineraries h2 {
+        font-size: 1.3rem;
+    }
+
+    .itinerary-card h3 {
+        font-size: 0.95rem;
+    }
+
+    .detail p {
+        white-space: normal;
+    }
+
+    .time {
+        min-width: auto;
+        font-size: 0.85rem;
+    }
+
+    .instruction {
+        font-size: 0.85rem;
+    }
+
+    .location {
+        min-width: auto;
+        text-align: left;
+    }
+
+    .trip-itineraries > button {
+        width: 100%;
+        margin: 1.5rem 0 0 0;
+    }
+}

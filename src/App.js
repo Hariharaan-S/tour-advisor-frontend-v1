@@ -6,6 +6,7 @@ import Home from './routes/home/home.component';
 import PlacesToVisit from './routes/places-to-visit/places-to-visit.component';
 import MakePlan from './routes/make-plan/make-plan.component';
 import ItineraryDetails from './routes/itinerary-details/itinerary-details.component';
+import TripItineraries from './routes/trip-itineraries/trip-itineraries.component';
 import Navbar from './components/navbar/navbar.component';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/places-to-visit' element={<PlacesToVisit />}></Route>
         <Route path='/make-plan' element={<MakePlan />}></Route>
         <Route path='/plan' element={<ItineraryDetails />}></Route>
+        <Route path='/trip-itineraries' element={<TripItineraries />}></Route>
       </Route>
     </Routes>
 
