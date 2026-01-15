@@ -63,5 +63,5 @@
 
 .destination-cards-container .destination-cards-wrapper {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }

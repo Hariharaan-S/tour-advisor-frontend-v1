@@ -1,8 +1,10 @@
 import React from "react";
 import './hero-section.styles.css'
 import Button from "../button/button.component";
+import { useNavigate } from "react-router-dom";
 
-const HeroSection = ({ title, description, cta, bgImage }) => {
+const HeroSection = ({ title, description, cta, bgImage, isPresent }) => {
+    const navigate = useNavigate();
     return (
         <>
             <div className="overlay"></div>
@@ -15,7 +17,7 @@ const HeroSection = ({ title, description, cta, bgImage }) => {
                         <p>{description}</p>
                     </div>
                     <div className="cto-button">
-                        <Button buttonType="default" buttonValue={cta} />
+                        {isPresent && <Button buttonType="default" buttonValue={cta} onClick={() => navigate('/make-plan')} />}
                     </div>
                 </div>
 

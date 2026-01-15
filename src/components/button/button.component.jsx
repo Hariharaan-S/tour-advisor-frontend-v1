@@ -7,9 +7,9 @@ const buttonTypes = {
     'default': 'default'
 }
 
-const Button = ({ buttonType, buttonValue, customStyle }) => {
+const Button = ({ buttonType, buttonValue, customStyle, onClick, type = "submit" }) => {
     return (
-        <button style={{ ...customStyle }} className={buttonTypes[buttonType]} type="submit">{buttonValue}</button>
+        <button style={{ ...customStyle }} className={buttonTypes[buttonType]} type={type} onClick={onClick}>{buttonValue}</button>
     )
 }
 

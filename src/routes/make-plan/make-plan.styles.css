@@ -1,11 +1,13 @@
 .plan-container {
+    position: relative;
     display: flex;
     height: 100%;
     padding: 20px;
     gap: 8rem;
-    margin: 8rem 3rem 0rem 3rem;
+    margin: -8rem 3rem 0rem 3rem;
     background-color: #DCF2FF;
     border-radius: 20px;
+    z-index: 2 !important;
 }
 
 .plan-form-container {
@@ -62,6 +64,24 @@
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
+}
+
+.make-plan-loader {
+    position: relative;
+    max-width: 90%;
+    margin: 5rem auto;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #ebf3ff 0%, #B0E1FF 100%);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
 }
 
 
@@ -128,4 +148,16 @@
 .plan-btn {
     margin-left: 53rem;
     margin-right: 2rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

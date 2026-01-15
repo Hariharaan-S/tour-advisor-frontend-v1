@@ -20,12 +20,12 @@
 }
 
 .navbar-scrolled ul li {
-    color: #000 !important;
+    color: #FFF !important;
     transition: all 0.3s ease;
 }
 
 .navbar-scrolled ul li:hover {
-    color: #000 !important;
+    color: #b2b2b2 !important;
     opacity: 0.7 !important;
 }
 
@@ -55,12 +55,12 @@
 
 .navbar ul li {
     cursor: pointer;
-    color: #b2b2b2;
+    color: #FFF;
     transition: color 0.3s;
 }
 
 .navbar ul li:hover {
-    color: #FFF;
+    color: #b2b2b2;
 }
 
 .navbar .user-profile {

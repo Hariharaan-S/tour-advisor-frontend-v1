@@ -5,7 +5,7 @@ import CityCard from "../../../components/city-card/city-card.component";
 const TopCities = () => {
     return (
         <div className="top-cities-container">
-            <h2>Top Places to Visit</h2>
+            <h2>Top Cities to Visit</h2>
             <div className="cities-wrapper">
                 <CityCard cityName="Chennai" imageUrl="img/chennai.png" />
                 <CityCard cityName="Madurai" imageUrl="img/madurai.jpg" />
