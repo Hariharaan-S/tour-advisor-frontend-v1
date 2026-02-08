@@ -1,62 +1,113 @@
-.signup-component {
-    display: flex;
-    column-gap: 2rem;
-    background-image: url('D:/tour-adivisor-1.0/tour-advisor-code/frontend/tour-advisor-v1/public/img/image10.png');
+.signup-page {
+    min-height: 100vh;
+    position: relative;
+    /* background-image: url('/img/image10.png'); */
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 100vh;
-    overflow: hidden;
 }
 
-.signup-form-section {
-    justify-content: center;
-    align-items: center;
-    padding: 5rem;
-}
-
-.signup-form-title {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #02002D;
-}
-
-.signup-hero-section {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-    padding: 2rem;
-    border-radius: 8px;
-    line-height: 0;
-    margin-left: auto;
-    margin-bottom: auto;
+.signup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
     z-index: 1;
 }
 
-.signup-hero-section .logo {
-    width: 150px;
-    height: 150px;
+.signup-component {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 4rem 3rem;
+}
+
+.signup-form-section {
+    flex: 1;
+    max-width: 420px;
+}
+
+.signup-form-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    color: white;
+    margin: 0 0 1.5rem 0;
+}
+
+.signup-hero-section {
+    flex: 1;
+    max-width: 420px;
+}
+
+.signup-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.signup-logo .logo-icon {
+    font-size: 1.5rem;
+    color: #7dd3c0;
+    transform: rotate(45deg);
+}
+
+.signup-logo .logo-name {
+    font-family: 'Poppins', sans-serif;
 }
 
 .signup-hero-title {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-size: 3rem;
-    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2.25rem;
+    color: white;
+    margin: 0 0 0.75rem 0;
 }
 
-.signup-hero-subtitle {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-size: 2rem;
-    color: #fff;
-    margin-top: 0.5rem;
+.signup-hero-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.6;
 }
 
-.signup-hero-section .logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+@media (max-width: 1024px) {
+    .signup-component {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        padding: 3rem 2rem;
+    }
+
+    .signup-hero-section {
+        text-align: center;
+    }
+
+    .signup-logo {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .signup-component {
+        padding: 2rem 1.5rem;
+    }
+
+    .signup-form-title {
+        font-size: 1.5rem;
+    }
+
+    .signup-hero-title {
+        font-size: 1.75rem;
+    }
 }

@@ -1,19 +1,25 @@
 import React from "react";
 import HeroSection from "../../components/hero-section/hero-section.component";
-import FloatSection from "../../components/float-section/float-section.component";
-import TopCities from "./top-cities/top-cities.component";
+import ExplorePlans from "../../components/explore-plans/explore-plans.component";
+import MorePlaces from "../../components/more-places/more-places.component";
+import CTASection from "../../components/cta-section/cta-section.component";
 import Footer from "../../components/footer/footer.component";
 
 const Home = () => {
     return (
         <div>
-            <HeroSection title="Travel Made Simple" description="Plan, organize, and enjoy trips without the hassle." cta="Start your plan" bgImage="img/hero-bg.jpg" isPresent={true} />
-            <FloatSection floatSectionTitle={"Make Your Perfect Plan"} floatSectionDescription={"From routes to stays — everything in one place."} />
-            <TopCities />
+            <HeroSection
+                title="Travel Made Simple"
+                description="Plan, organize, and enjoy trips without the hassle."
+                cta="Start Your Plan"
+                bgImage="img/hero-bg.jpg"
+            />
+            <ExplorePlans />
+            <MorePlaces />
+            <CTASection />
             <Footer />
         </div>
     );
-}
-
+};
 
 export default Home;

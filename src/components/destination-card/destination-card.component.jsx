@@ -27,7 +27,7 @@ const DestinationCard = () => {
                 </div>
             </div>
 
-            <Button customStyle={{ marginTop: "2rem" }} buttonType="register" buttonValue="Make Plan" />
+            <Button customStyle={{ marginTop: "2rem" }} buttonType="default" buttonValue="Make Plan" />
         </div>
     )
 }

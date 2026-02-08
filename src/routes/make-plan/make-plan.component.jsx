@@ -1,12 +1,13 @@
 import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./make-plan.styles.css";
-import PlacesList from "../../components/places-list/places-list.component";
+import MorePlaces from "../../components/more-places/more-places.component";
 import Footer from "../../components/footer/footer.component";
 import Button from "../../components/button/button.component";
 import { PlanContext } from "../../context/PlanContext";
 import Loader from "../../components/loader/loader.component";
-import HeroSection from "../../components/hero-section/hero-section.component";
+import FormInput from "../../components/form-input/form-input.component";
+import TripPlanCard from "../../components/trip-plan-card/trip-plan-card.component";
 
 const MakePlan = () => {
   const { updatePlan } = useContext(PlanContext);
@@ -24,15 +25,20 @@ const MakePlan = () => {
   const planRef = useRef(null);
 
   const handleChange = (e) => {
-    const { value, placeholder } = e.target;
-    // map placeholders to keys used by API
-    const keyMap = {
-      "Destination Place": "cityName",
-      "Number of Days": "numberOfDays",
-      Budget: "budget",
-    };
-    const key = keyMap[placeholder];
-    if (key) setForm((prev) => ({ ...prev, [key]: value }));
+    const { value, name } = e.target;
+    if (name) {
+      setForm((prev) => ({ ...prev, [name]: value }));
+    } else {
+      // Fallback for placeholder-based mapping
+      const { placeholder } = e.target;
+      const keyMap = {
+        "Where do you want to go?": "cityName",
+        "Number of days": "numberOfDays",
+        "Your travel budget": "budget",
+      };
+      const key = keyMap[placeholder];
+      if (key) setForm((prev) => ({ ...prev, [key]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -87,52 +93,62 @@ const MakePlan = () => {
 
   return (
     <>
-      <HeroSection
-        title={"Your Next Trip Starts Here"}
-        description={"Discover routes, stays, and experiences—effortlessly"}
-        bgImage="img/make-plan.jpg"
-        isPresent={false}
-      />
-      <div className="plan-container">
-        {/* Left: Form */}
-        <div className="plan-form-container">
-          <h2>Your Trip, Your Way</h2>
-          <p>Browse and customize your trip.</p>
+      <div className="make-plan-section make-plan-hero">
+        <div className="make-plan-container">
+          
+            <div className="plan-form-header">
+              <h1>Your Next Trip Starts Here</h1>
+              <p>Discover routes, stays, and experiences—effortlessly<br />Tell us about your travel preferences and we'll create a personalized itinerary just for you.</p>
+            </div>
 
-          <form className="plan-form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Destination Place"
-              value={form.cityName}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Number of Days"
-              value={form.numberOfDays}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Budget"
-              value={form.budget}
-              onChange={handleChange}
-            />
+            <form className="plan-form" onSubmit={handleSubmit}>
+              <FormInput
+                type="text"
+                name="cityName"
+                label="Destination"
+                placeholder="Where do you want to go?"
+                value={form.cityName}
+                onChange={handleChange}
+                icon="📍"
+                required
+              />
+              <FormInput
+                type="number"
+                name="numberOfDays"
+                label="Duration"
+                placeholder="Number of days"
+                value={form.numberOfDays}
+                onChange={handleChange}
+                icon="📅"
+                required
+              />
+              <FormInput
+                type="text"
+                name="budget"
+                label="Budget"
+                placeholder="Your travel budget"
+                value={form.budget}
+                onChange={handleChange}
+                icon="💰"
+                required
+              />
 
-            <Button
-              buttonType="login"
-              buttonValue={loading ? "Making..." : "Make Plan"}
-            />
-          </form>
+              <div className="form-actions">
+                <Button
+                  buttonType="default"
+                  buttonValue={loading ? "Creating Plan..." : "Create My Plan"}
+                  customStyle={{ width: "100%" }}
+                />
+              </div>
+            </form>
 
-          {error && (
-            <p className="error">{error.message || "Unable to create plan"}</p>
-          )}
-        </div>
-
-        {/* Right: Image */}
-        <div className="plan-image-container">
-          <img src="/img/plan image.png" alt="Planning trip" />
+            {error && (
+              <div className="error-message">
+                <span className="error-icon">⚠️</span>
+                <p>{error.message || "Unable to create plan. Please try again."}</p>
+              </div>
+            )}
+          
         </div>
       </div>
       {isLoading && (
@@ -143,50 +159,19 @@ const MakePlan = () => {
 
       {shouldShowResult && (
         <div className="result-plan-section" ref={planRef}>
-          <h2>Your trip plan is all set!</h2>
-          <div className="result-plan-wrapper">
-            <div className="result-plan-card">
-              <div className="result-plan-image">
-                <img src="/img/result-plan.png" alt="Destination" />
-              </div>
-              <div className="result-plan-details">
-                <h3>{responseData.plan.title || "Planned Trip"}</h3>
-                <p>
-                  {responseData.plan.description ||
-                    "Your trip plan has been generated."}
-                </p>
-
-                <div className="plan-features">
-                  <div className="feature">
-                    <img src="img/days.png" alt="" />
-                    <p>
-                      {form.numberOfDays ? `${form.numberOfDays} Days` : "N/A"}
-                    </p>
-                  </div>
-                  <div className="feature">
-                    <img src="img/people.png" alt="" />
-                    <p>
-                      {responseData.plan.people
-                        ? `${responseData.plan.people} persons`
-                        : "N/A"}
-                    </p>
-                  </div>
-                </div>
-                <div className="plan-btn">
-                  <Button
-                    buttonType={"login"}
-                    buttonValue={"Make Plan"}
-                    onClick={() => navigate("/trip-itineraries")}
-                    type="button"
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="result-plan-header">
+            <h2>Your Trip Plan is Ready!</h2>
+            <p>We've created a personalized itinerary based on your preferences.</p>
           </div>
+          <TripPlanCard 
+            plan={responseData.plan} 
+            formData={form}
+            onNavigate={() => navigate("/trip-itineraries")}
+          />
         </div>
       )}
 
-      <PlacesList />
+      <MorePlaces />
       <Footer />
     </>
   );

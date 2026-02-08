@@ -1,59 +1,51 @@
 import React from "react";
 import "./footer.styles.css";
-import Logo from "../logo/logo.component";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="footer">
+        <footer className="footer">
             <div className="footer-container">
-                <div className="footer-address-container">
-                    <div className="footer-main-logo">
-                        <img src="img/logo.png" alt="" />
-                    </div>
-                    <div className="address">
-                        <p>Sample Address Line 1</p>
-                        <p>Sample Address Line 2</p>
-                        <p>City Name</p>
-                        <p>State Name, <span>Pin Code: 000000</span></p>
-                    </div>
+                <div className="footer-brand">
+                    <Link to="/" className="footer-logo">
+                        <img src="img/logo.png" alt="Tour Advisor Logo" className="logo-img" />
+                        <span className="logo-name">Tour Advisor</span>
+                    </Link>
+                    <p className="footer-address">
+                        1237 Mepobahones, <br></br> Moshohones, <br></br> NY 12255
+                    </p>
                 </div>
 
-
                 <div className="footer-sitemap">
-                    <ul className="footer-site-list">
-                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/'}><li className="footer-site-item">Home</li></Link>
-                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/places-to-visit'}><li className="footer-site-item">Visit Places</li></Link>
-                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/make-plan'}><li className="footer-site-item">Plan Trip</li></Link>
-                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/'}><li className="footer-site-item">About Us</li></Link>
-                        <Link style={{ textDecoration: "none", color: "#FFF" }} to={'/'}><li className="footer-site-item">Contact Us</li></Link>
+                    <h4 className="footer-heading">SITEMAP</h4>
+                    <ul className="footer-list">
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/make-plan">Make Plan</Link></li>
+                        <li><Link to="/places-to-visit">visit Places</Link></li>
                     </ul>
                 </div>
 
+                <div className="footer-contact">
+                    <h4 className="footer-heading">CONTACT</h4>
+                    <ul className="footer-list">
+                        <li><Link to="/">About</Link></li>
+                        <li><Link to="/">Privacy Policy</Link></li>
+                        <li><Link to="/">Contact</Link></li>
+                    </ul>
+                </div>
 
-                <div className="footer-contact-container">
-                    <div className="contact-wrapper">
-                        <div className="phone">
-                            <Logo imageName={"phone.png"} />
-                            <p>+00 0000 0000</p>
-                        </div>
-                        <div className="email">
-                            <Logo imageName={"mail.png"} />
-                            <p>sample@sample.com</p>
-                        </div>
-                        <div className="media-container">
-                            <Logo imageName={"twitter.png"} />
-                            <Logo imageName={"facebook.png"} />
-                            <Logo imageName={"instagram.png"} />
-                            <Logo imageName={"youtube.png"} />
-                        </div>
+                <div className="footer-info">
+                    <a href="mailto:email@roamdtl.com" className="footer-email">email@roamdtl.com</a>
+                    <a href="tel:5824321253" className="footer-phone">582-432 1253</a>
+                    <div className="footer-social">
+                        <a href="#" className="social-icon" aria-label="Facebook">f</a>
+                        <a href="#" className="social-icon" aria-label="Twitter">𝕏</a>
+                        <a href="mailto:email@roamdtl.com" className="social-icon" aria-label="Email">✉</a>
                     </div>
                 </div>
             </div>
-
-            <p style={{ fontSize: ".8rem", margin: "3rem auto 0 auto", paddingBottom: "1rem" }}>&copy; 2025 Tour Advisor. All rights reserved.</p>
-        </div>
+        </footer>
     );
-}
+};
 
 export default Footer;
