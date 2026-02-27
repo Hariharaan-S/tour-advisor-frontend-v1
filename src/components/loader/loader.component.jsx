@@ -12,7 +12,7 @@ const Loader = () => {
           800,
           'Balancing your budget smartly…',
           800,
-          'Planning your day from 9:30 AM to 6:00 PM…',
+          'Planning your day-to-day itinerary…',
           800,
           'Finalizing your personalized itinerary…',
           800

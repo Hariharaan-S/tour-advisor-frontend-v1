@@ -1,55 +1,50 @@
 .login,
 .register {
-    background: linear-gradient(135deg, #ffc86f 0%, #DF8900 100%);
-    border: 0;
-    box-shadow: 0 4px 16px rgba(223, 137, 0, 0.25);
+    display: inline-block;
+    background: #DF8900;
+    color: white;
     width: 100%;
     padding: 13px 24px;
-    border-radius: 14px;
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-size: 1.05rem;
-    font-weight: 700;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-    color: white;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
+    border: none;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .login:hover,
 .register:hover {
-    box-shadow: 0 8px 24px rgba(223, 137, 0, 0.35);
-    transform: translateY(-2px);
+    background: rgb(255, 157, 0);
+    transform: translateY(-1px);
 }
 
 .login:active,
 .register:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(223, 137, 0, 0.25);
 }
 
 .default {
+    display: inline-block;
     padding: 14px 40px;
-    border-radius: 14px;
+    border-radius: 8px;
     color: white;
-    background: linear-gradient(135deg, #ffc86f 0%, #DF8900 100%);
-    font-weight: 700;
+    background: #DF8900;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
     width: auto;
-    transition: all 0.3s ease;
-    font-size: 1.05rem;
     cursor: pointer;
     border: none;
-    box-shadow: 0 4px 16px rgba(223, 137, 0, 0.25);
-    letter-spacing: 0.5px;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .default:hover {
-    box-shadow: 0 8px 24px rgba(223, 137, 0, 0.35);
-    transform: translateY(-2px);
+    background: rgb(255, 157, 0);
+    transform: translateY(-1px);
 }
 
 .default:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(223, 137, 0, 0.25);
 }
-

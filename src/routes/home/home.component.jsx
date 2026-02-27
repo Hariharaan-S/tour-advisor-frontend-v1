@@ -12,7 +12,6 @@ const Home = () => {
                 title="Travel Made Simple"
                 description="Plan, organize, and enjoy trips without the hassle."
                 cta="Start Your Plan"
-                bgImage="img/hero-bg.jpg"
             />
             <ExplorePlans />
             <MorePlaces />

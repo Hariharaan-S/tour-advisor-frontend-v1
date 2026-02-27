@@ -1,45 +1,47 @@
-.hero-section {
+.places-to-visit-hero-section {
     min-height: 70vh;
     width: 100%;
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
-    padding: 7rem 5rem;
+    padding: 4rem 5rem;
 }
 
-.hero-content {
+.places-to-visit-hero-content {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    width: 800px;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
     padding: 6rem 2rem;
 }
 
-.hero-title {
+.places-to-visit-hero-title {
     font-size: 4rem;
     font-weight: 700;
     color: black;
     margin: 0 0 1rem 0;
+    text-align: center;
     font-family: 'Poppins', sans-serif;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     line-height: 1.1;
 }
 
-.hero-tagline {
+.places-to-visit-hero-tagline {
     font-size: 1.25rem;
     color: rgba(0, 0, 0, 0.85);
     margin: 0 0 2.5rem 0;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
     font-weight: 400;
     text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-.hero-cta {
+.places-to-visit-hero-cta {
     display: inline-block;
     padding: 14px 36px;
     background: #2d9d78;
@@ -52,21 +54,21 @@
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.hero-cta:hover {
+.places-to-visit-hero-cta:hover {
     background: #248066;
     transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    .hero-title {
+    .places-to-visit-hero-title {
         font-size: 2.5rem;
     }
     
-    .hero-tagline {
+    .places-to-visit-hero-tagline {
         font-size: 1rem;
     }
     
-    .hero-cta {
+    .places-to-visit-hero-cta {
         padding: 12px 28px;
         font-size: 0.95rem;
     }

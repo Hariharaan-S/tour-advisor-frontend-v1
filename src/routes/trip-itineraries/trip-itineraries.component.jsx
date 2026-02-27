@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import "./trip-itineraries.styles.css";
 import HeroSection from "../../components/hero-section/hero-section.component";
 import Button from "../../components/button/button.component";
-import PlacesList from "../../components/places-list/places-list.component";
 import Footer from "../../components/footer/footer.component";
 import { PlanContext } from "../../context/PlanContext";
 import MorePlaces from "../../components/more-places/more-places.component";
