@@ -1,0 +1,33 @@
+.popup-menu {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    top: 3.5rem;
+    right: 0;
+    background: rgb(255, 246, 241);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: .5rem 0;
+}
+
+.popup-menu-item {
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.popup-menu-item a {
+    text-decoration: none;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+}
+
+.popup-menu-item:hover {
+    background: #f0f0f0;
+}
+

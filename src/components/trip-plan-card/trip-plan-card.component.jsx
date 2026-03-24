@@ -3,15 +3,13 @@ import "./trip-plan-card.styles.css";
 import Button from "../button/button.component";
 import { useNavigate } from "react-router-dom";
 
-const TripPlanCard = ({ plan, formData, onNavigate }) => {
+const TripPlanCard = ({ dayPlan, formData }) => {
     const navigate = useNavigate();
+    console.log(dayPlan);
+    const planId = dayPlan?.planId;
     
     const handleNavigate = () => {
-        if (onNavigate) {
-            onNavigate();
-        } else {
-            navigate("/trip-itineraries");
-        }
+        navigate(`/trip-itineraries/${planId}`);
     };
 
     return (
@@ -21,9 +19,9 @@ const TripPlanCard = ({ plan, formData, onNavigate }) => {
             </div>
             <div className="trip-plan-content">
                 <div className="trip-plan-header">
-                    <h3>{plan?.title || "Planned Trip"}</h3>
+                    <h3>{dayPlan?.title || "Planned Trip"}</h3>
                     <p className="trip-plan-description">
-                        {plan?.description || "Your trip plan has been generated successfully."}
+                        {dayPlan?.description || "Your trip plan has been generated successfully."}
                     </p>
                 </div>
                 
@@ -46,7 +44,7 @@ const TripPlanCard = ({ plan, formData, onNavigate }) => {
                         <div className="feature-info">
                             <span className="feature-label">Travelers</span>
                             <span className="feature-value">
-                                {plan?.people ? `${plan.people} persons` : "N/A"}
+                                {dayPlan?.people ? `${dayPlan.people} persons` : "N/A"}
                             </span>
                         </div>
                     </div>

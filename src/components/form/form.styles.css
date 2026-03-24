@@ -1,6 +1,6 @@
 .glassmorph-bg {
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background: rgba(20, 40, 67, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -54,7 +54,7 @@
 }
 
 .form-field input {
-    padding: 5px 10px;
+    padding: 20px 10px;
     border-radius: 10px;
     background: #142843;
     opacity: 0.5;
@@ -67,7 +67,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    column-gap: 10rem;
+    column-gap: 12rem;
     margin-top: 2rem;
 }
 
@@ -77,6 +77,11 @@
     font-weight: 300;
     font-style: normal;
     color: #fff;
+}
+
+.forgot-password p:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .login-sub-description {

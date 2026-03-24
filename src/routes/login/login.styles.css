@@ -1,10 +1,8 @@
 .login-page {
     min-height: 100vh;
     position: relative;
-    /* background-image: url('img/logo.png'); */
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 
 .login-overlay {
     position: fixed;
@@ -24,7 +22,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
+    gap: .5rem;
     padding: 4rem 3rem;
 }
 
@@ -45,8 +43,15 @@
 
 .login-logo .logo-icon {
     font-size: 1.5rem;
-    color: #7dd3c0;
-    transform: rotate(45deg);
+    width: 100px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.logo-icon img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
 }
 
 .login-logo .logo-name {
@@ -72,6 +77,7 @@
 .login-form-section {
     flex: 1;
     max-width: 420px;
+    height: auto;
 }
 
 .login-form-title {

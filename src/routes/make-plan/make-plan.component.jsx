@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./make-plan.styles.css";
 import MorePlaces from "../../components/more-places/more-places.component";
 import Footer from "../../components/footer/footer.component";
@@ -8,19 +8,22 @@ import { PlanContext } from "../../context/PlanContext";
 import Loader from "../../components/loader/loader.component";
 import FormInput from "../../components/form-input/form-input.component";
 import TripPlanCard from "../../components/trip-plan-card/trip-plan-card.component";
+import { UserContext } from "../../context/UserContext";
 
 const MakePlan = () => {
   const { updatePlan } = useContext(PlanContext);
+  const {user} = useContext(UserContext);
   const [form, setForm] = useState({
     cityName: "",
     numberOfDays: "",
     budget: "",
+    userId: user?._doc?.id
   });
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const loaderRef = useRef(null);
   const planRef = useRef(null);
 
@@ -52,11 +55,12 @@ const MakePlan = () => {
     try {
       const res = await fetch("http://localhost:5000/api/plan/make-plan", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("accessToken")}` },
         body: JSON.stringify({
           cityName: form.cityName,
           numberOfDays: form.numberOfDays,
           budget: form.budget,
+          userId: form.userId
         }),
       });
 
@@ -163,11 +167,18 @@ const MakePlan = () => {
             <h2>Your Trip Plan is Ready!</h2>
             <p>We've created a personalized itinerary based on your preferences.</p>
           </div>
-          <TripPlanCard 
-            plan={responseData.plan} 
-            formData={form}
-            onNavigate={() => navigate("/trip-itineraries")}
-          />
+          {
+            responseData.tripPlan && (
+              responseData.tripPlan.length > 0 ? (
+                responseData.tripPlan.map((dayPlan, index) => (
+                  <TripPlanCard key={index} dayPlan={dayPlan} formData={form} />
+                ))
+              ) : (
+                <p className="no-plan-message">We couldn't generate a plan based on the provided information. Please try adjusting your preferences.</p>
+              )
+            )
+          }
+          
         </div>
       )}
 

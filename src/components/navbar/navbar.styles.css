@@ -48,7 +48,7 @@
     transform: scale(1.05);
 }
 
-.logo-icon {
+/* .logo-icon {
     font-size: 1.25rem;
     color: #2d9d78;
     transform: rotate(45deg);
@@ -57,7 +57,7 @@
 .logo-name {
     font-family: 'Poppins', sans-serif;
     letter-spacing: -0.02em;
-}
+} */
 
 .navbar-nav {
     display: flex;
@@ -80,6 +80,7 @@
 
 .navbar-cta {
     padding: 10px 24px;
+    margin-left: 5rem;
     background: #DF8900;
     color: white;
     text-decoration: none;
@@ -94,6 +95,19 @@
     background: rgb(255, 157, 0);
     transform: translateY(-1px);
 }
+
+.navbar-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.navbar-profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 
 @media (max-width: 768px) {
     .navbar-nav {

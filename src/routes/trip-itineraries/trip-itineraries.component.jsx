@@ -3,33 +3,68 @@ import "./trip-itineraries.styles.css";
 import HeroSection from "../../components/hero-section/hero-section.component";
 import Button from "../../components/button/button.component";
 import Footer from "../../components/footer/footer.component";
-import { PlanContext } from "../../context/PlanContext";
 import MorePlaces from "../../components/more-places/more-places.component";
+import { useParams } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const TripItineraries = () => {
-  const plan = useContext(PlanContext);
+  const userContext = useContext(UserContext);
+  // Look at your console log: user is nested inside the context object
+  const userId = userContext?.user?._doc?.id;
+  const planId = useParams().planId;
 
-  const details = plan?.plan?.plan;
-  const title = details?.title;
-  const description = details?.description;
+  const [details, setDetails] = useState({});
   const [itineraries, setItineraries] = useState({});
 
+  // 1. Fetching Logic (Depends on IDs)
+  // 1. Fetching Logic
   useEffect(() => {
-    const instructions = details?.instructions || [];
-    const grouped = instructions.reduce((acc, inst) => {
-      const day = inst.day;
-      if (!acc[day]) acc[day] = [];
-      acc[day].push(inst);
-      return acc;
-    }, {});
-    setItineraries(grouped);
-  }, [details]);
+    if (!userId || !planId) return;
+
+    const fetchPlanDetails = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/plan/view-plan/${userId}/${planId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          },
+        );
+        const data = await res.json();
+
+        // FIX: Set details to data.planData instead of the whole response
+        if (data.planData) {
+          setDetails(data.planData);
+        }
+      } catch (error) {
+        console.error("Error fetching plan details:", error);
+      }
+    };
+
+    fetchPlanDetails();
+  }, [userId, planId]);
+
+  // 2. Transformation Logic (Depends on details)
+  useEffect(() => {
+    if (details?.instructions) {
+      const grouped = details.instructions.reduce((acc, inst) => {
+        const day = inst.day;
+        if (!acc[day]) acc[day] = [];
+        acc[day].push(inst);
+        return acc;
+      }, {});
+      setItineraries(grouped);
+    }
+  }, [details]); // Only runs when details state is actually updated
 
   return (
     <div className="trip-itineraries-page">
       <HeroSection
-        title={title || "Your Perfect Getaway Awaits"}
-        description={description || "Chennai City Explorer"}
+        title={details?.title || "Your Perfect Getaway Awaits"}
+        description={details?.description || "Chennai City Explorer"}
         cta="Save Plan"
         bgImage="img/trip-iti.png"
       />
@@ -38,7 +73,7 @@ const TripItineraries = () => {
           <h2 className="trip-itineraries-title">ITINERARIES</h2>
           <div className="itinerary-cards">
             {Object.keys(itineraries)
-              .sort((a, b) => a - b)
+              .sort((a, b) => Number(a) - Number(b))
               .map((day, index, arr) => (
                 <div className="itinerary-card" key={day}>
                   <div className="day-header">
