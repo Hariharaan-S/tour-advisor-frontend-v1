@@ -131,65 +131,90 @@ const MakePlan = () => {
     <>
       <div className="make-plan-section make-plan-hero">
         <div className="make-plan-container">
-          <div className="plan-form-header">
-            <h1>Your Next Trip Starts Here</h1>
-            <p>
-              Discover routes, stays, and experiences—effortlessly
-              <br />
-              Tell us about your travel preferences and we'll create a
-              personalized itinerary just for you.
-            </p>
+          <div className="make-plan-hero-grid">
+            <div className="make-plan-hero-copy">
+              <span className="section-badge">Tailor-Made Journeys</span>
+              <div className="plan-form-header">
+                <h1>Your Next Trip Starts Here</h1>
+                <p>
+                  Discover routes, stays, and experiences—effortlessly.
+                  <br />
+                  Tell us about your travel preferences and we'll create a
+                  personalized itinerary just for you.
+                </p>
+              </div>
+
+              <div className="plan-hero-features">
+                <div className="feature-card">
+                  <strong>Fast planning</strong>
+                  <p>Build your itinerary in seconds with smart route generation.</p>
+                </div>
+                <div className="feature-card">
+                  <strong>Local insights</strong>
+                  <p>Enjoy curated recommendations designed for Israel travel.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="plan-form-section plan-form-hero">
+              <div className="plan-form-header">
+                <h2>Plan your ideal stay</h2>
+                <p>
+                  Enter your destination, duration, and budget. We'll handle the rest.
+                </p>
+              </div>
+
+              <form className="plan-form" onSubmit={handleSubmit}>
+                <FormInput
+                  type="text"
+                  name="cityName"
+                  label="Destination"
+                  placeholder="Where do you want to go?"
+                  value={form.cityName}
+                  onChange={handleChange}
+                  icon="📍"
+                  required
+                />
+                <FormInput
+                  type="number"
+                  name="numberOfDays"
+                  label="Duration"
+                  placeholder="Number of days"
+                  value={form.numberOfDays}
+                  onChange={handleChange}
+                  icon="📅"
+                  required
+                />
+                <FormInput
+                  type="text"
+                  name="budget"
+                  label="Budget"
+                  placeholder="Your travel budget"
+                  value={form.budget}
+                  onChange={handleChange}
+                  icon="💰"
+                  required
+                />
+
+                <div className="form-actions">
+                  <Button
+                    buttonType="default"
+                    buttonValue={loading ? "Creating Plan..." : "Create My Plan"}
+                    customStyle={{ width: "100%" }}
+                  />
+                </div>
+              </form>
+
+              {error && (
+                <div className="error-message">
+                  <span className="error-icon">⚠️</span>
+                  <p>
+                    {error.message || "Unable to create plan. Please try again."}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-
-          <form className="plan-form" onSubmit={handleSubmit}>
-            <FormInput
-              type="text"
-              name="cityName"
-              label="Destination"
-              placeholder="Where do you want to go?"
-              value={form.cityName}
-              onChange={handleChange}
-              icon="📍"
-              required
-            />
-            <FormInput
-              type="number"
-              name="numberOfDays"
-              label="Duration"
-              placeholder="Number of days"
-              value={form.numberOfDays}
-              onChange={handleChange}
-              icon="📅"
-              required
-            />
-            <FormInput
-              type="text"
-              name="budget"
-              label="Budget"
-              placeholder="Your travel budget"
-              value={form.budget}
-              onChange={handleChange}
-              icon="💰"
-              required
-            />
-
-            <div className="form-actions">
-              <Button
-                buttonType="default"
-                buttonValue={loading ? "Creating Plan..." : "Create My Plan"}
-                customStyle={{ width: "100%" }}
-              />
-            </div>
-          </form>
-
-          {error && (
-            <div className="error-message">
-              <span className="error-icon">⚠️</span>
-              <p>
-                {error.message || "Unable to create plan. Please try again."}
-              </p>
-            </div>
-          )}
         </div>
       </div>
       {isLoading && (

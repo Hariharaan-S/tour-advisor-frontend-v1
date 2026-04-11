@@ -1,14 +1,17 @@
 import React from "react";
 import Form from "../../components/form/form.component";
+import loginBg from "../../assets/img/login-bg.jpg";
+import logoIcon from "../../assets/img/logo.png";
 import "./login.styles.css";
 
 const Login = () => {
     const loginPageStyle = {
         minHeight: "100vh",
         position: "relative",
-        backgroundImage: `url(${process.env.PUBLIC_URL}/img/login-bg.jpg)`,
+        backgroundImage: `url(${loginBg})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        backgroundPosition: "center",
     };
 
     return (
@@ -17,7 +20,7 @@ const Login = () => {
             <div className="login-component">
                 <div className="login-hero-section">
                     <div className="login-logo">
-                        <span className="logo-icon"><img src="img/logo.png" alt="Logo" srcset="" /></span>
+                        <span className="logo-icon"><img src={logoIcon} alt="Logo" /></span>
                         <span className="logo-name">Tour Advisor</span>
                     </div>
                     <h2 className="login-hero-title">Welcome Back</h2>

@@ -9,7 +9,7 @@ const Signup = () => {
             <div className="signup-component">
                 <div className="signup-form-section">
                     <h2 className="signup-form-title">Create an account</h2>
-                    <Form fields={["Username", "Create new Password", "Confirm Password"]} isLogin={false} />
+                    <Form fields={["Username", "Email", "Create new Password", "Confirm Password"]} isLogin={false} />
                 </div>
                 <div className="signup-hero-section">
                     <div className="signup-logo">

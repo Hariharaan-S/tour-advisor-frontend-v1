@@ -16,6 +16,13 @@ const TripItineraries = () => {
   const [details, setDetails] = useState({});
   const [itineraries, setItineraries] = useState({});
 
+  const capitalizeName = (name) => (
+    name.toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+  )
+
   // 1. Fetching Logic (Depends on IDs)
   // 1. Fetching Logic
   useEffect(() => {
@@ -60,6 +67,16 @@ const TripItineraries = () => {
     }
   }, [details]); // Only runs when details state is actually updated
 
+  const touristSpots = details?.tourist_spots || [];
+  const transportList = details?.transport || [];
+  const instructionList = details?.instructions || [];
+  const costSummary = details?.cost_summary || {};
+  const totalCost = costSummary.total_cost_for_people ?? 0;
+  const peopleCount = costSummary.people_count ?? details?.people ?? 0;
+
+  const getPlaceholderImage = (name) =>
+    `http://localhost:5000/api/plan/image/${encodeURIComponent(name)}`;
+
   return (
     <div className="trip-itineraries-page">
       <HeroSection
@@ -70,39 +87,112 @@ const TripItineraries = () => {
       />
       <div className="trip-itineraries-section">
         <div className="trip-itineraries-container">
-          <h2 className="trip-itineraries-title">ITINERARIES</h2>
-          <div className="itinerary-cards">
-            {Object.keys(itineraries)
-              .sort((a, b) => Number(a) - Number(b))
-              .map((day, index, arr) => (
-                <div className="itinerary-card" key={day}>
-                  <div className="day-header">
-                    <span className="dot"></span>
-                    <h3>Day {day}</h3>
-                  </div>
-                  {index < arr.length - 1 && <div className="line"></div>}
-                  <div className="itineraries-details">
-                    {itineraries[day].map((inst, idx) => (
-                      <div className="detail" key={idx}>
-                        <p className="time">{inst.time}</p>
-                        <p className="instruction">{inst.place_name}</p>
-                        <p className="location">
-                          <a
-                            href={
-                              inst.location_link !== "NOT_AVAILABLE"
-                                ? inst.location_link
-                                : "#"
-                            }
-                          >
-                            Location Link
-                          </a>
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+          <div className="plan-header-row">
+            <div>
+              <h2 className="trip-itineraries-title">ITINERARIES</h2>
+              {details?.description && (
+                <p className="trip-plan-description">{details.description}</p>
+              )}
+            </div>
+            <div className="plan-summary-card">
+              <p>Total cost</p>
+              <h3>₹{totalCost.toLocaleString()}</h3>
+              <p>{peopleCount} people</p>
+            </div>
           </div>
+
+          <section className="section section-spots">
+            <div className="section-title-row">
+              <h3>Spots You Will Visit</h3>
+            </div>
+            <div className="spot-grid">
+              {touristSpots.length > 0 ? (
+                touristSpots.map((spot) => (
+                  <div className="spot-card" key={spot._id || spot.name}>
+                    <div className="spot-image">
+                      <img
+                        src={getPlaceholderImage(spot.name)}
+                        alt={spot.name}
+                      />
+                      <div className="spot-overlay">
+                        <p>{spot.description}</p>
+                      </div>
+                    </div>
+                    <div className="spot-card-body">
+                      <h4>{capitalizeName(spot.name)}</h4>
+                      <span>Popularity: {Number(1 + 4.0 * spot.popularity)}</span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No tourist spots available yet.</p>
+              )}
+            </div>
+          </section>
+
+          <section className="section section-transport">
+            <div className="section-title-row">
+              <h3>Transportation</h3>
+            </div>
+            <div className="transport-table-wrapper">
+              <table className="transport-table">
+                <thead>
+                  <tr>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Distance (km)</th>
+                    <th>Mode</th>
+                    <th>Duration (min)</th>
+                    <th>Avg Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {transportList.length > 0 ? (
+                    transportList.map((transport) => (
+                      <tr key={transport._id || `${transport.origin}-${transport.destination}`}>
+                        <td>{capitalizeName(transport.origin)}</td>
+                        <td>{capitalizeName(transport.destination)}</td>
+                        <td>{transport.distance_km}</td>
+                        <td>{transport.name}</td>
+                        <td>{transport.duration}</td>
+                        <td>₹{transport.average_cost}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6">No transportation data available.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="section section-instructions">
+            <div className="section-title-row">
+              <h3>Instructions</h3>
+            </div>
+            <div className="instructions-list">
+              {instructionList.length > 0 ? (
+                instructionList.map((inst) => (
+                  <div
+                    className="instruction-item"
+                    key={inst._id || `${inst.day}-${inst.time}-${inst.place_name}`}
+                  >
+                    <div className="instruction-header">
+                      <span className="instruction-day">Day {inst.day}</span>
+                      <span className="instruction-time">{inst.time}</span>
+                    </div>
+                    <h4>{capitalizeName(inst.place_name)}</h4>
+                    <p>{inst.description}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No instructions available yet.</p>
+              )}
+            </div>
+          </section>
+
           <div className="trip-itineraries-actions">
             <Button buttonType="default" buttonValue="Schedule/Save Plan" />
           </div>

@@ -4,6 +4,7 @@ import PlacesToVisitHeroSection from "../../components/places-to-visit-hero-sect
 import ExplorePlans from "../../components/explore-plans/explore-plans.component";
 import MorePlaces from "../../components/more-places/more-places.component";
 import Footer from "../../components/footer/footer.component";
+import PlacesBackgroundImage from "../../assets/img/places-to-visit-bg.jpeg";
 
 const PlacesToVisit = () => {
     return (
@@ -12,7 +13,7 @@ const PlacesToVisit = () => {
                 title="Discover Hidden Gems"
                 description="From timeless heritage sites to breathtaking landscapes, explore the must-visit destinations that make every journey unforgettable"
                 cta="Start Planning"
-                bgImage="img/places_to_visit.png"
+                bgImage={PlacesBackgroundImage}
             />
             <ExplorePlans />
             <MorePlaces />

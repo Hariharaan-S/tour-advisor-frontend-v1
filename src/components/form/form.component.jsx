@@ -37,11 +37,15 @@ const Form = ({ fields, isLogin }) => {
         e.preventDefault();
 
         const payload = {
-            email: formData.email || formData.username,
-            password: formData.password,
+            username: formData.username,
+            email: formData.email,
+            password: formData.password || formData.createnewpassword,
         };
 
+        console.log(payload);
+
         if (!payload.email || !payload.password) {
+            
             console.error('Both email/username and password are required');
             return;
         }

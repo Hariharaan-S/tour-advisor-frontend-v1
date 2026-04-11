@@ -16,10 +16,218 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: #1a1a1a;
-    text-align: center;
     letter-spacing: 0.15em;
-    margin: 0 0 3rem 0;
+    margin: 0;
     font-family: 'Poppins', sans-serif;
+}
+
+.plan-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.trip-plan-description {
+    margin: 0.75rem 0 0;
+    color: #4b5563;
+    max-width: 760px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+.plan-summary-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 1.25rem 1.5rem;
+    min-width: 210px;
+    text-align: right;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.plan-summary-card p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.plan-summary-card h3 {
+    margin: 0.75rem 0 0;
+    font-size: 2rem;
+    color: #111827;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-title-row {
+    margin-bottom: 1rem;
+}
+
+.section-title-row h3 {
+    font-size: 1.25rem;
+    color: #111827;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
+}
+
+.spot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.spot-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.spot-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.spot-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.spot-image:hover img {
+    transform: scale(1.05);
+}
+
+.spot-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.spot-image:hover .spot-overlay {
+    opacity: 1;
+}
+
+.spot-card-body {
+    padding: 1rem 1.2rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.spot-card-body h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.spot-card-body span {
+    color: #4b5563;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.transport-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+}
+
+.transport-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.transport-table th,
+.transport-table td {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.transport-table th {
+    background: #f8fafc;
+    color: #111827;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+}
+
+.transport-table td {
+    color: #374151;
+    font-size: 0.95rem;
+}
+
+.instruction-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1rem;
+    background: #ffffff;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.05);
+}
+
+.instruction-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.instruction-day {
+    font-weight: 700;
+    color: #111827;
+}
+
+.instruction-time {
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.instruction-item h4 {
+    margin: 0.25rem 0 0.65rem;
+    font-size: 1.05rem;
+    color: #111827;
+}
+
+.instruction-item p {
+    margin: 0;
+    color: #475569;
+    line-height: 1.75;
 }
 
 .itinerary-cards {

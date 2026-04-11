@@ -7,6 +7,24 @@
     align-items: center;
     justify-content: center;
     padding: 4rem 5rem;
+    background: linear-gradient(160deg, #0c4a6e 0%, #075985 40%, #164e63 100%);
+    overflow: hidden;
+}
+
+.places-to-visit-hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.45;
+}
+
+.places-to-visit-hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(5,30,60,0.55) 0%, rgba(5,30,60,0.35) 60%, rgba(5,30,60,0.7) 100%);
 }
 
 .places-to-visit-hero-content {
@@ -18,33 +36,34 @@
     justify-content: center;
     width: 80%;
     padding: 6rem 2rem;
+    color: #fff;
 }
 
 .places-to-visit-hero-title {
     font-size: 4rem;
     font-weight: 700;
-    color: black;
+    color: #fff;
     margin: 0 0 1rem 0;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
     line-height: 1.1;
 }
 
 .places-to-visit-hero-tagline {
     font-size: 1.25rem;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(255, 255, 255, 0.85);
     margin: 0 0 2.5rem 0;
     font-family: 'Poppins', sans-serif;
     text-align: center;
     font-weight: 400;
-    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
 }
 
 .places-to-visit-hero-cta {
     display: inline-block;
     padding: 14px 36px;
-    background: #2d9d78;
+    background: #0ea5e9;
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -52,10 +71,11 @@
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
     transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 20px rgba(14,165,233,0.4);
 }
 
 .places-to-visit-hero-cta:hover {
-    background: #248066;
+    background: #0284c7;
     transform: translateY(-2px);
 }
 

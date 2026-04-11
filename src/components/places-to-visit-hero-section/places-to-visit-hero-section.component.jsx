@@ -10,7 +10,7 @@ const PlacesToVisitHeroSection = ({ title, description, cta, bgImage, carouselIt
         navigate('/make-plan');
     }
     return (
-        <div className="places-to-visit-hero-section">
+        <div className="places-to-visit-hero-section" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="places-to-visit-hero-content">
                 <h1 className="places-to-visit-hero-title">{title}</h1>
                 <p className="places-to-visit-hero-tagline">{description}</p>

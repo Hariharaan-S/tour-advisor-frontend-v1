@@ -2,6 +2,7 @@
   width:100%;
   overflow:hidden;
   margin-top:20px;
+  z-index: 10;
 }
 
 .places-carousel-overlay {
@@ -12,7 +13,7 @@
     height: 100%;
     opacity: 0.5;
     border-radius:8px;
-    z-index:1;
+    z-index:2;
 }
 
 .places-carousel-scroller{

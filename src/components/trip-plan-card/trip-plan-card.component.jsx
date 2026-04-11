@@ -2,6 +2,10 @@ import React from "react";
 import "./trip-plan-card.styles.css";
 import Button from "../button/button.component";
 import { useNavigate } from "react-router-dom";
+import ResultPlan from "../../assets/img/result-plan.png";
+import DaysIcon from "../../assets/img/days.png";
+import PeopleIcon from "../../assets/img/people.png";
+
 
 const TripPlanCard = ({ dayPlan, formData }) => {
     const navigate = useNavigate();
@@ -15,7 +19,7 @@ const TripPlanCard = ({ dayPlan, formData }) => {
     return (
         <div className="trip-plan-card">
             <div className="trip-plan-image">
-                <img src="/img/result-plan.png" alt="Trip destination" />
+                <img src={ResultPlan} alt="Trip destination" />
             </div>
             <div className="trip-plan-content">
                 <div className="trip-plan-header">
@@ -28,7 +32,7 @@ const TripPlanCard = ({ dayPlan, formData }) => {
                 <div className="trip-plan-features">
                     <div className="trip-feature">
                         <div className="feature-icon">
-                            <img src="img/days.png" alt="Days" />
+                            <img src={DaysIcon} alt="Days" />
                         </div>
                         <div className="feature-info">
                             <span className="feature-label">Duration</span>
@@ -39,7 +43,7 @@ const TripPlanCard = ({ dayPlan, formData }) => {
                     </div>
                     <div className="trip-feature">
                         <div className="feature-icon">
-                            <img src="img/people.png" alt="People" />
+                            <img src={PeopleIcon} alt="People" />
                         </div>
                         <div className="feature-info">
                             <span className="feature-label">Travelers</span>
