@@ -1,0 +1,4 @@
+export const PLAN_ACTION_TYPES = {
+  UPDATE_PLAN: "UPDATE_PLAN",
+  RESET_PLAN: "RESET_PLAN",
+};

@@ -5,12 +5,14 @@ import Button from "../../components/button/button.component";
 import Footer from "../../components/footer/footer.component";
 import MorePlaces from "../../components/more-places/more-places.component";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import MapContainer from "../../components/map/map.component";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 const TripItineraries = () => {
-  const userContext = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   // Look at your console log: user is nested inside the context object
-  const userId = userContext?.user?._doc?.id;
+  const userId = currentUser?._doc?.id;
   const planId = useParams().planId;
 
   const [details, setDetails] = useState({});
@@ -74,6 +76,16 @@ const TripItineraries = () => {
   const totalCost = costSummary.total_cost_for_people ?? 0;
   const peopleCount = costSummary.people_count ?? details?.people ?? 0;
 
+  const originPlace = touristSpots.length > 0 ? touristSpots[0]?.name ?? '' : '';
+  const destinationPlace = touristSpots.length > 1 ? touristSpots[touristSpots.length - 1]?.name ?? '' : originPlace;
+
+  const wayPointsPlaces = touristSpots
+    .slice(1, -1)
+    .map((spot) => spot?.name)
+    .filter(Boolean);
+
+  const hasMapRoute = originPlace && destinationPlace;
+
   const getPlaceholderImage = (name) =>
     `http://localhost:5000/api/plan/image/${encodeURIComponent(name)}`;
 
@@ -126,6 +138,14 @@ const TripItineraries = () => {
                 ))
               ) : (
                 <p>No tourist spots available yet.</p>
+              )}
+            </div>
+
+            <div className="tourist-spots-maps-embed">
+              {hasMapRoute ? (
+                <MapContainer waypointsPlaces={wayPointsPlaces} />
+              ) : (
+                <p>Please add at least two tourist spots to display the route map.</p>
               )}
             </div>
           </section>

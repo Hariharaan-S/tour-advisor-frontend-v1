@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const tourTypes = [
   {
@@ -31,6 +32,7 @@ const tourTypes = [
 ];
 
 const MorePlaces = () => {
+  const { t } = useTranslation();
   return (
     <section
       style={{
@@ -60,7 +62,7 @@ const MorePlaces = () => {
               marginBottom: 12,
             }}
           >
-            Tours
+            {t("Tours section tag")}
           </p>
           <h2
             style={{
@@ -71,7 +73,7 @@ const MorePlaces = () => {
               marginBottom: 16,
             }}
           >
-            Assured & Reliable Plans
+            {t("Tours section title")}
           </h2>
           <p
             style={{
@@ -82,12 +84,12 @@ const MorePlaces = () => {
               maxWidth: 460,
             }}
           >
-            Well-structured itineraries designed to run seamlessly, so your travel plans stay on track without uncertainty.
+            {t("Tours section description")}
           </p>
 
           {/* Tour type list */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 36 }}>
-            {tourTypes.map((t, i) => (
+            {tourTypes.map((p, i) => (
               <div
                 key={i}
                 style={{
@@ -118,7 +120,7 @@ const MorePlaces = () => {
                     flexShrink: 0,
                   }}
                 >
-                  {t.icon}
+                  {p.icon}
                 </div>
                 <div>
                   <h4
@@ -129,9 +131,9 @@ const MorePlaces = () => {
                       marginBottom: 4,
                     }}
                   >
-                    {t.title}
+                    {t(p.title)}
                   </h4>
-                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.7 }}>{t.desc}</p>
+                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.7 }}>{t(p.desc)}</p>
                 </div>
               </div>
             ))}
@@ -153,7 +155,7 @@ const MorePlaces = () => {
             onMouseEnter={(e) => (e.currentTarget.style.background = "#0284c7")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "#0ea5e9")}
           >
-            Create a Plan →
+            {t("Create a Plan →")}
           </button>
         </div>
 

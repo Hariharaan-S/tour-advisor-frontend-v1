@@ -2,10 +2,18 @@ import React from "react";
 import Logo from "../../assets/img/logo.png";
 
 const footerLinks = {
-  "Menu": ["Home", "About Us", "Services", "Contact Us"],
+  "Menu": ["Home", "About Us", "Design Plan", "Places to Visit", "Contact Us"],
   "More": ["Blog", "FAQ"],
   "Quick Links": ["Privacy Policy", "Terms of Use", "Sitemap", "Support"],
   "Contact Us": ["contact@touradvisor.com", "9876543210", "Chennai, Tamil Nadu"],
+};
+
+const footerLinkRoutes = {
+  "Home": "/",
+  "About Us": "/about",
+  "Contact Us": "/contact",
+  "Design Plan": "/make-plan",
+  "Places to Visit": "/places-to-visit",
 };
 
 const socialIcons = [
@@ -165,7 +173,7 @@ const Footer = () => {
                 {links.map((link, i) => (
                   <li key={i} style={{ marginBottom: 8 }}>
                     <a
-                      href="#"
+                      href={footerLinkRoutes[link] || "#"}
                       style={{
                         fontSize: 12,
                         color: "#64748b",

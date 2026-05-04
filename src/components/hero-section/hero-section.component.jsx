@@ -1,7 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import BackgroundImage from "../../assets/img/bg-hero-image.jpeg";
 
 const HeroSection = ({ title, description, cta }) => {
+
+  const { t } = useTranslation();
+
   return (
     <section
       style={{
@@ -57,7 +61,7 @@ const HeroSection = ({ title, description, cta }) => {
             marginBottom: 20,
           }}
         >
-          From Idea to Itinerary in Seconds
+          {t("Home page hero tag")}
         </p>
 
         <h1
@@ -70,7 +74,7 @@ const HeroSection = ({ title, description, cta }) => {
             marginBottom: 20,
           }}
         >
-          {title || "We create meaningful memories in Israel Day by day"}
+          {t("Home page hero title")}
         </h1>
 
         <p
@@ -84,8 +88,7 @@ const HeroSection = ({ title, description, cta }) => {
             margin: "0 auto 36px",
           }}
         >
-          {description ||
-            "We can help offer a tailor-made tour and accommodation within Israel, enabling creation for a focus on the excellence and quality of memorable visiting groups, delegations, and conferences."}
+          {t("Home page hero description")}
         </p>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, justifyContent: "center" }}>
@@ -113,7 +116,7 @@ const HeroSection = ({ title, description, cta }) => {
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            {cta || "Starting Tour"}
+            {t("Home page hero CTA")}
           </button>
 
           {/* Play Button */}

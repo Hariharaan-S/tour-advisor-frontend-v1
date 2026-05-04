@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const videoColumns = [
   {
@@ -32,6 +33,8 @@ const videoColumns = [
 const VideoTourSection = () => {
   const [playing, setPlaying] = useState(false);
 
+  const {t} = useTranslation();
+
   return (
     <section
       style={{
@@ -53,7 +56,7 @@ const VideoTourSection = () => {
               marginBottom: 10,
             }}
           >
-            Media
+            {t("Video Section Tag")}
           </p>
           <h2
             style={{
@@ -62,7 +65,7 @@ const VideoTourSection = () => {
               color: "#0f172a",
             }}
           >
-            Watch Our Travel Stories
+            {t("Video Section Title")}
           </h2>
         </div>
 
@@ -98,9 +101,9 @@ const VideoTourSection = () => {
                       marginBottom: 6,
                     }}
                   >
-                    {item.title}
+                    {t(item.title)}
                   </h4>
-                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.7 }}>{item.desc}</p>
+                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.7 }}>{t(item.desc)}</p>
                 </div>
               </div>
             ))}
@@ -191,9 +194,9 @@ const VideoTourSection = () => {
                       marginBottom: 6,
                     }}
                   >
-                    {item.title}
+                    {t(item.title)}
                   </h4>
-                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.7 }}>{item.desc}</p>
+                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.7 }}>{t(item.desc)}</p>
                 </div>
               </div>
             ))}

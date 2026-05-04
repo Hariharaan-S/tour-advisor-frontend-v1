@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const badges = [
   {
@@ -35,6 +36,7 @@ const badges = [
 ];
 
 const LeadersSection = () => {
+  const { t } = useTranslation();
   return (
     <section
       style={{
@@ -66,7 +68,7 @@ const LeadersSection = () => {
               marginBottom: 12,
             }}
           >
-            Intro
+            {t("Leader Section tag")}
           </p>
           <h2
             style={{
@@ -77,7 +79,7 @@ const LeadersSection = () => {
               marginBottom: 20,
             }}
           >
-            Plan Smarter Trips with AI
+            {t("Leader Section title")}
           </h2>
           <p
             style={{
@@ -87,9 +89,7 @@ const LeadersSection = () => {
               marginBottom: 32,
             }}
           >
-            Discover destinations, generate day-by-day itineraries, and explore
-            stays, food, and attractions—all tailored to your budget and
-            preferences. Plan your perfect trip across India in seconds.
+            {t("Leader Section description")}
           </p>
         </div>
 
@@ -169,7 +169,7 @@ const LeadersSection = () => {
                 <div
                   style={{ fontWeight: 700, fontSize: 16, color: "#0f172a" }}
                 >
-                  {b.title}
+                  {t(b.title)}
                 </div>
                 <div
                   style={{ fontSize: 12, fontWeight: 700, color: "#0ea5e9" }}
@@ -178,7 +178,7 @@ const LeadersSection = () => {
                 </div>
               </div>
               <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6 }}>
-                {b.subtitle}
+                {t(b.subtitle)}
               </div>
             </div>
           </div>

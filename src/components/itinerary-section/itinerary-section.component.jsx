@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const stats = [
   { value: "20", label: "Years of Experience" },
@@ -8,6 +9,9 @@ const stats = [
 ];
 
 const ItinerarySection = () => {
+
+  const { t } = useTranslation();
+
   return (
     <section
       style={{
@@ -123,7 +127,7 @@ const ItinerarySection = () => {
               marginBottom: 12,
             }}
           >
-            About Us
+            {t("Itinerary section tag")}
           </p>
           <h2
             style={{
@@ -134,7 +138,7 @@ const ItinerarySection = () => {
               marginBottom: 20,
             }}
           >
-            Every itinerary is built around what you truly want.
+            {t("Itinerary section title")}
           </h2>
           <p
             style={{
@@ -145,34 +149,8 @@ const ItinerarySection = () => {
               maxWidth: 460,
             }}
           >
-            With customized plans, carefully designed routes, and trusted local insights, we make travel planning effortless and experiences unforgettable.
+            {t("Itinerary section description")}
           </p>
-
-          {/* Stats grid */}
-          {/* <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 24,
-            }}
-          >
-            {stats.map((s, i) => (
-              <div key={i} style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    fontSize: "clamp(28px, 3vw, 40px)",
-                    fontWeight: 800,
-                    color: "#0ea5e9",
-                    lineHeight: 1,
-                    marginBottom: 6,
-                  }}
-                >
-                  {s.value}
-                </div>
-                <div style={{ fontSize: 12, color: "#64748b", fontWeight: 500 }}>{s.label}</div>
-              </div>
-            ))}
-          </div> */}
         </div>
       </div>
     </section>

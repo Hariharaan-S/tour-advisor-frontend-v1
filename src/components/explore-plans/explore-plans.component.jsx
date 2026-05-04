@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const tours = [
   {
@@ -56,6 +57,7 @@ const StarRating = ({ rating }) => {
 
 const ExplorePlans = () => {
   const scrollRef = useRef(null);
+  const { t } = useTranslation();
 
   const scroll = (dir) => {
     if (scrollRef.current) {
@@ -108,7 +110,7 @@ const ExplorePlans = () => {
                 marginBottom: 16,
               }}
             >
-              Discover Trending Travel Itineraries
+              {t("Explore plans title")}
             </h2>
             <p
               style={{
@@ -118,7 +120,7 @@ const ExplorePlans = () => {
                 marginBottom: 28,
               }}
             >
-              Trending trips, smart routes, and easy planning—all in one place.
+              {t("Explore plans description")}
             </p>
 
             <button
@@ -138,7 +140,7 @@ const ExplorePlans = () => {
               onMouseEnter={(e) => (e.currentTarget.style.background = "#0284c7")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "#0ea5e9")}
             >
-              Explore All Tours
+              {t("Explore CTA Button")}
             </button>
 
             {/* Filter tags */}
@@ -158,7 +160,7 @@ const ExplorePlans = () => {
                     fontWeight: 500,
                   }}
                 >
-                  {f}
+                  {t(f)}
                 </button>
               ))}
             </div>
@@ -213,7 +215,7 @@ const ExplorePlans = () => {
                 msOverflowStyle: "none",
               }}
             >
-              {tours.map((t, i) => (
+              {tours.map((tour, i) => (
                 <div
                   key={i}
                   style={{
@@ -237,8 +239,8 @@ const ExplorePlans = () => {
                 >
                   <div style={{ position: "relative", height: 180 }}>
                     <img
-                      src={t.image}
-                      alt={t.city}
+                      src={tour.image}
+                      alt={tour.city}
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                     <span
@@ -246,7 +248,7 @@ const ExplorePlans = () => {
                         position: "absolute",
                         top: 12,
                         left: 12,
-                        background: t.badgeColor,
+                        background: tour.badgeColor,
                         color: "#fff",
                         fontSize: 10,
                         fontWeight: 600,
@@ -254,7 +256,7 @@ const ExplorePlans = () => {
                         borderRadius: 20,
                       }}
                     >
-                      {t.badge}
+                      {tour.badge}
                     </span>
                   </div>
                   <div style={{ padding: "14px 16px" }}>
@@ -269,10 +271,10 @@ const ExplorePlans = () => {
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="#0ea5e9">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                       </svg>
-                      <span style={{ fontWeight: 600, fontSize: 13, color: "#0f172a" }}>{t.city}</span>
+                      <span style={{ fontWeight: 600, fontSize: 13, color: "#0f172a" }}>{t(tour.city)}</span>
                     </div>
-                    <StarRating rating={t.rating} />
-                    <p style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>{t.reviews} Reviews</p>
+                    <StarRating rating={tour.rating} />
+                    <p style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>{tour.reviews} Reviews</p>
                   </div>
                 </div>
               ))}

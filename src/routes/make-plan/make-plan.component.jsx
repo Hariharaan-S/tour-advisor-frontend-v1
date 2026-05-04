@@ -4,25 +4,35 @@ import "./make-plan.styles.css";
 import MorePlaces from "../../components/more-places/more-places.component";
 import Footer from "../../components/footer/footer.component";
 import Button from "../../components/button/button.component";
-import { PlanContext } from "../../context/PlanContext";
 import Loader from "../../components/loader/loader.component";
 import FormInput from "../../components/form-input/form-input.component";
 import TripPlanCard from "../../components/trip-plan-card/trip-plan-card.component";
-import { UserContext } from "../../context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectPlansOverview, selectPlanOverviewLoading, selectPlanOverviewError } from "../../store/plan-overview/plan-overview.selector";
+import { fetchPlanOverviewFailure, fetchPlanOverviewStart, fetchPlanOverviewSuccess, fetchPlanOverviewStop } from "../../store/plan-overview/plan-overview.actions";
+
 
 const MakePlan = () => {
-  const { updatePlan } = useContext(PlanContext);
-  const { user } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const plansOverview = useSelector(selectPlansOverview);
+  const loading = useSelector(selectPlanOverviewLoading);
+  const error = useSelector(selectPlanOverviewError);
   const [form, setForm] = useState({
     cityName: "",
     numberOfDays: "",
     budget: "",
-    userId: user?._doc?.id,
+    userId: currentUser?._doc?.id,
   });
-  const [responseData, setResponseData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    console.log("MakePlan - currentUser:", currentUser);
+    console.log("MakePlan - form.userId:", form.userId);
+    if (currentUser?._doc?.id) {
+      setForm((prev) => ({ ...prev, userId: currentUser._doc.id }));
+    }
+  }, [currentUser]);
   const [coordinates, setCoordinates] = useState(null);
   // const navigate = useNavigate();
   const loaderRef = useRef(null);
@@ -47,19 +57,24 @@ const MakePlan = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setResponseData(null);
-    setIsLoading(true);
+
+    if (!form.userId) {
+      dispatch(fetchPlanOverviewFailure("Please log in to create a plan"));
+      return;
+    }
+
+    dispatch(fetchPlanOverviewStart());
+
     loaderRef.current?.scrollIntoView({ behavior: "smooth" });
 
-    console.log(JSON.stringify({
-          cityName: form.cityName,
-          numberOfDays: form.numberOfDays,
-          budget: form.budget,
-          userId: form.userId,
-          coordinates: coordinates
-        }));
+    console.log("Submitting form data:", {
+      cityName: form.cityName,
+      numberOfDays: form.numberOfDays,
+      budget: form.budget,
+      userId: form.userId,
+      coordinates: coordinates,
+    });
+
     try {
       const res = await fetch("http://localhost:5000/api/plan/make-plan", {
         method: "POST",
@@ -72,7 +87,7 @@ const MakePlan = () => {
           numberOfDays: form.numberOfDays,
           budget: form.budget,
           userId: form.userId,
-          coordinates: coordinates
+          coordinates: coordinates,
         }),
       });
 
@@ -84,28 +99,18 @@ const MakePlan = () => {
       });
 
       if (res.ok) {
-        setIsLoading(false);
-        setResponseData(data || {});
-        updatePlan(data || {});
-        setTimeout(
-          () => planRef.current?.scrollIntoView({ behavior: "smooth" }),
-          100,
-        );
+        console.log("Plan created successfully:", data);
+        dispatch(fetchPlanOverviewSuccess(data?.tripPlan || null));
       } else {
-        setIsLoading(false);
-        setError(data || { message: "Server returned an error" });
+        dispatch(fetchPlanOverviewFailure(data?.message || "Failed to create plan"));
       }
     } catch (err) {
       console.log("make-plan error =>", err);
-      setIsLoading(false);
-      setError({ message: err.message || "Network error" });
+      dispatch(fetchPlanOverviewFailure(err.message || "An error occurred while creating the plan"));
     } finally {
-      setIsLoading(false);
-      setLoading(false);
+      dispatch(fetchPlanOverviewStop());
     }
   };
-
-  const shouldShowResult = responseData && !error;
 
   useEffect(() => {
     if (!("geolocation" in navigator)) {
@@ -130,6 +135,8 @@ const MakePlan = () => {
   return (
     <>
       <div className="make-plan-section make-plan-hero">
+        <div className="make-plan-overlay"></div>
+        <div className="make-plan-gradient-overlay"></div>
         <div className="make-plan-container">
           <div className="make-plan-hero-grid">
             <div className="make-plan-hero-copy">
@@ -147,11 +154,15 @@ const MakePlan = () => {
               <div className="plan-hero-features">
                 <div className="feature-card">
                   <strong>Fast planning</strong>
-                  <p>Build your itinerary in seconds with smart route generation.</p>
+                  <p>
+                    Build your itinerary in seconds with smart route generation.
+                  </p>
                 </div>
                 <div className="feature-card">
                   <strong>Local insights</strong>
-                  <p>Enjoy curated recommendations designed for Israel travel.</p>
+                  <p>
+                    Enjoy curated recommendations designed for Israel travel.
+                  </p>
                 </div>
               </div>
             </div>
@@ -160,7 +171,8 @@ const MakePlan = () => {
               <div className="plan-form-header">
                 <h2>Plan your ideal stay</h2>
                 <p>
-                  Enter your destination, duration, and budget. We'll handle the rest.
+                  Enter your destination, duration, and budget. We'll handle the
+                  rest.
                 </p>
               </div>
 
@@ -199,7 +211,9 @@ const MakePlan = () => {
                 <div className="form-actions">
                   <Button
                     buttonType="default"
-                    buttonValue={loading ? "Creating Plan..." : "Create My Plan"}
+                    buttonValue={
+                      loading ? "Creating Plan..." : "Create My Plan"
+                    }
                     customStyle={{ width: "100%" }}
                   />
                 </div>
@@ -209,7 +223,8 @@ const MakePlan = () => {
                 <div className="error-message">
                   <span className="error-icon">⚠️</span>
                   <p>
-                    {error.message || "Unable to create plan. Please try again."}
+                    {error ||
+                      "Unable to create plan. Please try again."}
                   </p>
                 </div>
               )}
@@ -217,13 +232,23 @@ const MakePlan = () => {
           </div>
         </div>
       </div>
-      {isLoading && (
+      {loading && !error && (
         <div className="make-plan-loader" ref={loaderRef}>
-          <Loader />
+          <Loader
+            active={loading}
+            onComplete={() => {
+              if (plansOverview && plansOverview.length > 0) {
+                setTimeout(
+                  () => planRef.current?.scrollIntoView({ behavior: "smooth" }),
+                  100,
+                );
+              }
+            }}
+          />
         </div>
       )}
 
-      {shouldShowResult && (
+      {!loading && !error && (
         <div className="result-plan-section" ref={planRef}>
           <div className="result-plan-header">
             <h2>Your Trip Plan is Ready!</h2>
@@ -231,9 +256,9 @@ const MakePlan = () => {
               We've created a personalized itinerary based on your preferences.
             </p>
           </div>
-          {responseData.tripPlan &&
-            (responseData.tripPlan.length > 0 ? (
-              responseData.tripPlan.map((dayPlan, index) => (
+          {plansOverview &&
+            (plansOverview.length > 0 ? (
+              plansOverview.map((dayPlan, index) => (
                 <TripPlanCard key={index} dayPlan={dayPlan} formData={form} />
               ))
             ) : (
@@ -242,11 +267,10 @@ const MakePlan = () => {
                 Please try adjusting your preferences.
               </p>
             ))}
+          <MorePlaces />
+          <Footer />
         </div>
       )}
-
-      <MorePlaces />
-      <Footer />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import './button.styles.css'
 
 const buttonTypes = {
@@ -8,8 +9,9 @@ const buttonTypes = {
 }
 
 const Button = ({ buttonType, buttonValue, customStyle, onClick, type = "submit" }) => {
+    const { t } = useTranslation();
     return (
-        <button style={{ ...customStyle }} className={buttonTypes[buttonType]} type={type} onClick={onClick}>{buttonValue}</button>
+        <button style={{ ...customStyle }} className={buttonTypes[buttonType]} type={type} onClick={onClick}>{t(buttonValue)}</button>
     )
 }
 

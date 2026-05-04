@@ -1,35 +1,36 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const posts = [
   {
     image:
-      "https://images.unsplash.com/photo-1538370965046-79c0d6907d47?w=500&auto=format&fit=crop",
-    category: "History",
-    title: "Hagia Receptance",
+      "https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=500&auto=format&fit=crop",
+    category: "City Tour",
+    title: "Chennai Local Exploration",
     date: "April 2024",
     readTime: "5 min",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1493770348161-369560ae357d?w=500&auto=format&fit=crop",
-    category: "Nature",
-    title: "Verdant Tanzania",
+      "https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=500&auto=format&fit=crop",
+    category: "Temple Tour",
+    title: "Madurai Temple Visit",
     date: "March 2024",
     readTime: "4 min",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1542903660-eedba2cda473?w=500&auto=format&fit=crop",
-    category: "Culture",
-    title: "Diffuse Beliefs",
+      "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?w=500&auto=format&fit=crop",
+    category: "Nature",
+    title: "Coimbatore Waterfalls Trip",
     date: "March 2024",
     readTime: "6 min",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=500&auto=format&fit=crop",
-    category: "Adventure",
-    title: "Atkins to Wild Korea",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&auto=format&fit=crop",
+    category: "Nature Tour",
+    title: "Western Ghats Nature Escape",
     date: "February 2024",
     readTime: "7 min",
   },

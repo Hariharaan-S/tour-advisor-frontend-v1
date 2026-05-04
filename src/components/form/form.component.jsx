@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import SocialMediaButtons from '../social-media/social-media.component'
 import Button from "../button/button.component";
+import { login } from '../../utils/user.utils';
 import './form.styles.css'
-import { UserContext } from '../../context/UserContext';
+import { setCurrentUser } from "../../store/user/user.actions";
+
 
 const Form = ({ fields, isLogin }) => {
     const buttonType = isLogin ? 'login' : 'register';
     const buttonValue = isLogin ? 'Login' : 'Register';
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
     
 
     const [formData, setFormData] = React.useState({
@@ -17,7 +23,6 @@ const Form = ({ fields, isLogin }) => {
         confirmPassword: ''
     });
 
-    const { login } = useContext(UserContext);
     const navigate = useNavigate();
 
     const redirectToRegister = () => {
@@ -61,18 +66,16 @@ const Form = ({ fields, isLogin }) => {
         }).then(response => response.json())
         .then(data => {
             if (data.accessToken) {
-                localStorage.setItem('accessToken', data.accessToken);
-                localStorage.setItem('refreshToken', data.refreshToken);
                 if (data.user) {
-                    login({
+                    dispatch(setCurrentUser(login({
                         accessToken: data.accessToken,
                         refreshToken: data.refreshToken,
-                    }, data.user);
+                    }, data.user)));
                 } else {
-                    login({
+                    dispatch(setCurrentUser(login({
                         accessToken: data.accessToken,
                         refreshToken: data.refreshToken,
-                    });
+                    })));
                 }
                 navigate('/');
             } else {
@@ -97,15 +100,17 @@ const Form = ({ fields, isLogin }) => {
                         if (f.toLowerCase().includes("password")) inputType = "password";
                         if (key === "email") inputType = "email";
 
+                        const translatedLabel = t(f);
                         return (
                             <div className="form-field" key={i}>
-                                <label htmlFor={key}>{f}</label>
+                                <label htmlFor={key}>{translatedLabel}</label>
                                 <input
                                     type={inputType}
                                     name={key}
                                     id={key}
                                     value={formData[key] || ''}
                                     onChange={handleChange}
+                                    placeholder={translatedLabel}
                                 />
                             </div>
                         );
@@ -114,15 +119,15 @@ const Form = ({ fields, isLogin }) => {
 
                 {isLogin && <div className="forgot-password">
                     <p onClick={redirectToRegister}>
-                        New User? <span>Register</span>
+                        {t("New User?")} <span>{t("Register")}</span>
                     </p>
-                    <p onClick={redirectToForgotPassword}>Forgot Password?</p>
+                    <p onClick={redirectToForgotPassword}>{t("Forgot Password?")}</p>
                 </div>
                 }
 
 
                 <Button buttonType={buttonType} buttonValue={buttonValue} />
-                <p className="login-sub-description">or login with</p>
+                <p className="login-sub-description">{t("or login with")}</p>
                 <SocialMediaButtons />
             </div>
 
