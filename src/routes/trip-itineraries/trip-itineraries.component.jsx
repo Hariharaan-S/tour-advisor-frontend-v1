@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./trip-itineraries.styles.css";
 import HeroSection from "../../components/hero-section/hero-section.component";
 import Button from "../../components/button/button.component";
@@ -6,17 +6,24 @@ import Footer from "../../components/footer/footer.component";
 import MorePlaces from "../../components/more-places/more-places.component";
 import { useParams } from "react-router-dom";
 import MapContainer from "../../components/map/map.component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { fetchPlanError, updatePlan } from "../../store/plan/plan.actions";
+import { selectPlanData, selectPlanInstructions } from "../../store/plan/plan.selector";
 
 const TripItineraries = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   // Look at your console log: user is nested inside the context object
   const userId = currentUser?._doc?.id;
   const planId = useParams().planId;
-
-  const [details, setDetails] = useState({});
-  const [itineraries, setItineraries] = useState({});
+  const details = useSelector(selectPlanData);
+  const itineraries = useSelector(selectPlanInstructions).reduce((acc, inst) => {
+        const day = inst.day;
+        if (!acc[day]) acc[day] = [];
+        acc[day].push(inst);
+        return acc;
+      }, {});
 
   const capitalizeName = (name) => (
     name.toLowerCase()
@@ -46,28 +53,15 @@ const TripItineraries = () => {
 
         // FIX: Set details to data.planData instead of the whole response
         if (data.planData) {
-          setDetails(data.planData);
+          dispatch(updatePlan(data.planData));
         }
       } catch (error) {
-        console.error("Error fetching plan details:", error);
+        dispatch(fetchPlanError(error.message || "Failed to fetch plan details"));
       }
     };
 
     fetchPlanDetails();
   }, [userId, planId]);
-
-  // 2. Transformation Logic (Depends on details)
-  useEffect(() => {
-    if (details?.instructions) {
-      const grouped = details.instructions.reduce((acc, inst) => {
-        const day = inst.day;
-        if (!acc[day]) acc[day] = [];
-        acc[day].push(inst);
-        return acc;
-      }, {});
-      setItineraries(grouped);
-    }
-  }, [details]); // Only runs when details state is actually updated
 
   const touristSpots = details?.tourist_spots || [];
   const transportList = details?.transport || [];

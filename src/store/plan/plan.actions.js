@@ -8,3 +8,8 @@ export const updatePlan = (planData) => ({
 export const resetPlan = () => ({
     type: PLAN_ACTION_TYPES.RESET_PLAN
 });
+
+export const fetchPlanError = (error) => ({
+    type: PLAN_ACTION_TYPES.FETCH_PLAN_ERROR,
+    payload: error
+});

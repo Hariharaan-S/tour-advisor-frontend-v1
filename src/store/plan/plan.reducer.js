@@ -19,6 +19,9 @@ export const planReducer = (state = PLAN_INITIAL_STATE, action) => {
             return { ...state, ...payload };
         case 'RESET_PLAN':
             return PLAN_INITIAL_STATE;
+        case 'FETCH_PLAN_ERROR':
+            console.error("Error fetching plan:", payload);
+            return state; // Keep existing state on error
         default:
             return state;
     }

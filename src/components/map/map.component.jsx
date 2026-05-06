@@ -1,39 +1,42 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { useEffect } from 'react';
-import { GoogleMap, useJsApiLoader, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { GoogleMap, useLoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 import './map.styles.css';
 
 const MAP_LIBRARIES = ['places'];
+const GOOGLE_MAPS_SCRIPT_ID = 'tour-advisor-google-maps-script';
 
 const MapContainer = ({ waypointsPlaces }) => {
   const [response, setResponse] = useState(null);
   const [directionsStatus, setDirectionsStatus] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
-  const apiKey = 'AIzaSyDPj5TAbQwVkQy4Ai4x9TEHVumSrDKwL2Y';
-  const { isLoaded, loadError } = useJsApiLoader({
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const hasApiKey = Boolean(apiKey);
+  const { isLoaded, loadError } = useLoadScript({
+    id: GOOGLE_MAPS_SCRIPT_ID,
     googleMapsApiKey: apiKey,
-    libraries: MAP_LIBRARIES
+    libraries: MAP_LIBRARIES,
+    preventGoogleFontsLoading: true
   });
 
-    useEffect(() => {
-      if (!("geolocation" in navigator)) {
-        alert("Geolocation is not supported by this browser.");
-        return;
-      }
-  
-      function successCallback(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-  
-        setCoordinates({ lat: latitude, lng: longitude });
-      }
-  
-      function errorCallback(error) {
-        alert(`ERROR(${error.code}): ${error.message}`);
-      }
-  
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    }, []);
+  useEffect(() => {
+    if (!("geolocation" in navigator)) {
+      alert("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    function successCallback(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      setCoordinates({ lat: latitude, lng: longitude });
+    }
+
+    function errorCallback(error) {
+      alert(`ERROR(${error.code}): ${error.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  }, []);
 
   const directionsOptions = useMemo(
     () => ({
@@ -76,11 +79,11 @@ const MapContainer = ({ waypointsPlaces }) => {
 
   const renderMap = () => {
     if (!isLoaded) {
-      return <div className="map-loading">Loading map...</div>;
+      return <div className="map-loading-message">Loading map...</div>;
     }
 
     if (!coordinates) {
-      return <div className="map-loading">Waiting for your location...</div>;
+      return <div className="map-loading-message">Waiting for your location...</div>;
     }
 
     return (
@@ -108,10 +111,12 @@ const MapContainer = ({ waypointsPlaces }) => {
     );
   };
 
-  const statusMessage = !isLoaded
-    ? 'Loading map...'
+  const statusMessage = !hasApiKey
+    ? 'Google Maps API key is missing. Add REACT_APP_GOOGLE_MAPS_API_KEY to frontend/tour-advisor-v1/.env.local and restart the React dev server.'
     : loadError
-    ? 'Unable to load Google Maps. Check your API key.'
+    ? `Unable to load Google Maps: ${loadError.message || 'check your API key and Maps JavaScript API settings.'}`
+    : !isLoaded
+    ? 'Loading map...'
     : directionsStatus === 'ZERO_RESULTS'
     ? 'No route found for the selected origin and destination. Try a more specific address or coordinates.'
     : directionsStatus === 'NOT_FOUND'
