@@ -1,11 +1,57 @@
+/* signup.styles.css
+   Mirrors login.styles.css exactly — same tokens, same layout,
+   same Poppins font, same glassmorphism language toggle.
+   Only class-name prefix changes: login-* → signup-*
+*/
+
 .signup-page {
     min-height: 100vh;
     position: relative;
-    /* background-image: url('/img/image10.png'); */
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
+/* ── Language toggle (copy of login's) ───────────────────── */
+.language-toggle {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.language-toggle label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.language-toggle select {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.language-toggle select option {
+    background: #0f172a;
+    color: #fff;
+}
+
+/* ── Overlay (copy of login's) ───────────────────────────── */
 .signup-overlay {
     position: fixed;
     top: 0;
@@ -16,6 +62,7 @@
     z-index: 1;
 }
 
+/* ── Two-column layout (copy of login-component) ─────────── */
 .signup-component {
     position: relative;
     z-index: 2;
@@ -24,23 +71,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
+    gap: 0.5rem;
     padding: 4rem 3rem;
 }
 
-.signup-form-section {
-    flex: 1;
-    max-width: 420px;
-}
-
-.signup-form-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-    color: white;
-    margin: 0 0 1.5rem 0;
-}
-
+/* ── Hero section (copy of login-hero-section) ───────────── */
 .signup-hero-section {
     flex: 1;
     max-width: 420px;
@@ -58,8 +93,15 @@
 
 .signup-logo .logo-icon {
     font-size: 1.5rem;
-    color: #7dd3c0;
-    transform: rotate(45deg);
+    width: 100px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.signup-logo .logo-icon img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
 }
 
 .signup-logo .logo-name {
@@ -69,7 +111,7 @@
 .signup-hero-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     color: white;
     margin: 0 0 0.75rem 0;
 }
@@ -82,9 +124,25 @@
     line-height: 1.6;
 }
 
+/* ── Form section (copy of login-form-section) ───────────── */
+.signup-form-section {
+    flex: 1;
+    max-width: 420px;
+    height: auto;
+}
+
+.signup-form-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    color: white;
+    margin: 0 0 1.5rem 0;
+}
+
+/* ── Responsive (mirrors login breakpoints exactly) ──────── */
 @media (max-width: 1024px) {
     .signup-component {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 2rem;
         padding: 3rem 2rem;
     }
@@ -103,11 +161,11 @@
         padding: 2rem 1.5rem;
     }
 
-    .signup-form-title {
-        font-size: 1.5rem;
+    .signup-hero-title {
+        font-size: 2rem;
     }
 
-    .signup-hero-title {
-        font-size: 1.75rem;
+    .signup-form-title {
+        font-size: 1.5rem;
     }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../../assets/img/logo.png";
+import { useTranslation } from "react-i18next";
 
 const footerLinks = {
   "Menu": ["Home", "About Us", "Design Plan", "Places to Visit", "Contact Us"],
@@ -60,6 +61,7 @@ const socialIcons = [
 ];
 
 const Footer = () => {
+  const {t} = useTranslation();
   return (
     <footer
       style={{
@@ -106,7 +108,7 @@ const Footer = () => {
               </span>
             </div>
             <p style={{ fontSize: 12, lineHeight: 1.8, marginBottom: 20 }}>
-              Creating unforgettable experiences <br/> across India and beyond.
+              {t("Footer description")}
             </p>
 
             {/* CTA button */}
@@ -124,7 +126,7 @@ const Footer = () => {
                 marginBottom: 20,
               }}
             >
-              Start Your Tour
+              {t("Start your tour")}
             </button>
 
             {/* Social icons */}
@@ -167,7 +169,7 @@ const Footer = () => {
                   marginBottom: 16,
                 }}
               >
-                {heading}
+                {t(heading)}
               </h4>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {links.map((link, i) => (
@@ -183,7 +185,7 @@ const Footer = () => {
                       onMouseEnter={(e) => (e.target.style.color = "#0ea5e9")}
                       onMouseLeave={(e) => (e.target.style.color = "#64748b")}
                     >
-                      {link}
+                      {t(link)}
                     </a>
                   </li>
                 ))}
@@ -210,7 +212,7 @@ const Footer = () => {
             fontSize: 12,
           }}
         >
-          <span>© {new Date().getFullYear()} Chennai. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} {t("Chennai. All rights reserved.")}</span>
           <div style={{ display: "flex", gap: 24 }}>
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item, i) => (
               <a
@@ -220,7 +222,7 @@ const Footer = () => {
                 onMouseEnter={(e) => (e.target.style.color = "#0ea5e9")}
                 onMouseLeave={(e) => (e.target.style.color = "#64748b")}
               >
-                {item}
+                {t(item)}
               </a>
             ))}
           </div>

@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const CTASection = () => {
+  const {t} = useTranslation();
   return (
     <section
       style={{
@@ -54,7 +56,7 @@ const CTASection = () => {
             marginBottom: 20,
           }}
         >
-          Find The Perfect Trip For You And Discover Smart Adventures With Us!
+          {t("cta section title")}
         </h2>
         <p
           style={{
@@ -64,9 +66,7 @@ const CTASection = () => {
             marginBottom: 32,
           }}
         >
-          Our AI-driven platform is ready to craft your dream itinerary. From
-          private tours to group adventures — your perfect travel experience
-          awaits.
+          {t("cta section description")}
         </p>
         <button
           style={{
@@ -91,7 +91,7 @@ const CTASection = () => {
             e.currentTarget.style.transform = "translateY(0)";
           }}
         >
-          Get Started Now →
+          {t("Get Started Now →")}
         </button>
       </div>
     </section>

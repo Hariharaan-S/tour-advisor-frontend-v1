@@ -5,6 +5,7 @@ import Coimbatore from '../../assets/img/coimbatore.png'
 import Madurai from '../../assets/img/madurai.jpg'
 import Trichy from '../../assets/img/trichy.png'
 import Kanyakumari from '../../assets/img/hero-bg1.jpg'
+import { useTranslation } from "react-i18next";
 
 const PlacesCarousel = ({ items = [], speed = 20 }) => {
   const cards = items.length ? items : [
@@ -19,7 +20,7 @@ const PlacesCarousel = ({ items = [], speed = 20 }) => {
     { title: 'Trichy', background: '#FBEFEF', bgImage: Trichy },
     { title: 'Kanyakumari', background: '#FFA4A4', bgImage: Kanyakumari }
   ];
-
+  const {t} = useTranslation();
   // duplicate items for seamless infinite scroll
   const loopItems = [...cards, ...cards];
 
@@ -33,7 +34,7 @@ const PlacesCarousel = ({ items = [], speed = 20 }) => {
           <div className="places-carousel-item" key={idx}>
             <div className="places-carousel-card" style={{ backgroundImage: `url(${it.bgImage})` }}>
                 <div className="places-carousel-overlay" style={{background: it.background}}></div>
-              <div className="places-carousel-card-title">{it.title}</div>
+              <div className="places-carousel-card-title">{t(it.title)}</div>
             </div>
           </div>
         ))}

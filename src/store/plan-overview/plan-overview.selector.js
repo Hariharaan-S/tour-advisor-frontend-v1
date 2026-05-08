@@ -12,3 +12,5 @@ export const selectPlansOverview = (state) => state.planOverview.plansOverview;
 export const selectPlanOverviewLoading = (state) => state.planOverview.loading;
 
 export const selectPlanOverviewError = (state) => state.planOverview.error;
+
+export const selectPlanOverviewOnMount = (state) => state.planOverview.onMount;

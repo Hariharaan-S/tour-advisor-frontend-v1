@@ -17,3 +17,7 @@ export const fetchPlanOverviewFailure = (error) => ({
 export const fetchPlanOverviewStop = () => ({
     type: PLAN_OVERVIEW_ACTION_TYPES.FETCH_PLAN_OVERVIEW_STOP,
 });
+
+export const fetchPlanOverviewClear = () => ({
+    type: PLAN_OVERVIEW_ACTION_TYPES.FETCH_PLAN_OVERVIEW_CLEAR,
+});

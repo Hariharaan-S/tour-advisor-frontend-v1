@@ -37,6 +37,7 @@ const posts = [
 ];
 
 const GetInspiredSection = () => {
+  const { t } = useTranslation();
   return (
     <section
       style={{
@@ -66,7 +67,7 @@ const GetInspiredSection = () => {
                 marginBottom: 10,
               }}
             >
-              Blog & Articles
+              {t("Get inspired tag")}
             </p>
             <h2
               style={{
@@ -75,7 +76,7 @@ const GetInspiredSection = () => {
                 color: "#0f172a",
               }}
             >
-              Get Inspired
+              {t("Get inspired title")}
             </h2>
           </div>
 
@@ -96,7 +97,7 @@ const GetInspiredSection = () => {
               onMouseEnter={(e) => (e.currentTarget.style.background = "#f8fafc")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
             >
-              View All →
+              ({t("View All →")})
             </button>
             {["←", "→"].map((arrow, i) => (
               <button
@@ -177,7 +178,7 @@ const GetInspiredSection = () => {
                     borderRadius: 20,
                   }}
                 >
-                  {p.category}
+                  {t(p.category)}
                 </span>
               </div>
 
@@ -191,7 +192,7 @@ const GetInspiredSection = () => {
                     lineHeight: 1.4,
                   }}
                 >
-                  {p.title}
+                  {t(p.title)}
                 </h3>
                 <div
                   style={{

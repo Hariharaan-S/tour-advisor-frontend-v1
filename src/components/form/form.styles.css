@@ -1,13 +1,13 @@
 .glassmorph-bg {
     width: 500px;
-    height: 500px;
+    height: auto;
     background: rgba(20, 40, 67, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
 }
 
 .glassmorph-bg::before {
@@ -92,14 +92,14 @@
 @media screen and (max-width: 1024px) {
     .glassmorph-bg {
         width: 400px;
-        height: 400px;
+        height: auto;
     }
 }
 
 @media screen and (max-width: 768px) {
     .glassmorph-bg {
         width: 600px;
-        height: 400px;
+        height: auto;
         padding: 2rem;
     }
     .forgot-password {
@@ -118,7 +118,7 @@
     .glassmorph-bg {
         width: 100%;
         max-width: 350px;
-        height: 400px;
+        height: auto;
         padding: 2rem;
         margin-left: -2rem;
     }

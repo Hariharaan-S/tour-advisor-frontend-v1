@@ -9,8 +9,8 @@ import FormInput from "../../components/form-input/form-input.component";
 import TripPlanCard from "../../components/trip-plan-card/trip-plan-card.component";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { selectPlansOverview, selectPlanOverviewLoading, selectPlanOverviewError } from "../../store/plan-overview/plan-overview.selector";
-import { fetchPlanOverviewFailure, fetchPlanOverviewStart, fetchPlanOverviewSuccess, fetchPlanOverviewStop } from "../../store/plan-overview/plan-overview.actions";
+import { selectPlansOverview, selectPlanOverviewLoading, selectPlanOverviewError, selectPlanOverviewOnMount } from "../../store/plan-overview/plan-overview.selector";
+import { fetchPlanOverviewFailure, fetchPlanOverviewStart, fetchPlanOverviewSuccess, fetchPlanOverviewStop, fetchPlanOverviewClear } from "../../store/plan-overview/plan-overview.actions";
 
 
 const MakePlan = () => {
@@ -19,12 +19,17 @@ const MakePlan = () => {
   const plansOverview = useSelector(selectPlansOverview);
   const loading = useSelector(selectPlanOverviewLoading);
   const error = useSelector(selectPlanOverviewError);
+  const onMount = useSelector(selectPlanOverviewOnMount);
   const [form, setForm] = useState({
     cityName: "",
     numberOfDays: "",
     budget: "",
     userId: currentUser?._doc?.id,
   });
+
+  useEffect(() => {
+    dispatch(fetchPlanOverviewClear());
+  }, []);
 
   useEffect(() => {
     console.log("MakePlan - currentUser:", currentUser);
@@ -137,12 +142,13 @@ const MakePlan = () => {
       <div className="make-plan-section make-plan-hero">
         <div className="make-plan-overlay"></div>
         <div className="make-plan-gradient-overlay"></div>
-        <div className="make-plan-container">
-          <div className="make-plan-hero-grid">
-            <div className="make-plan-hero-copy">
-              <span className="section-badge">Tailor-Made Journeys</span>
-              <div className="plan-form-header">
-                <h1>Your Next Trip Starts Here</h1>
+        {form.userId && (
+          <div className="make-plan-container">
+            <div className="make-plan-hero-grid">
+              <div className="make-plan-hero-copy">
+                <span className="section-badge">Tailor-Made Journeys</span>
+                <div className="plan-form-header">
+                  <h1>Your Next Trip Starts Here</h1>
                 <p>
                   Discover routes, stays, and experiences—effortlessly.
                   <br />
@@ -230,7 +236,7 @@ const MakePlan = () => {
               )}
             </div>
           </div>
-        </div>
+        </div>)}
       </div>
       {loading && !error && (
         <div className="make-plan-loader" ref={loaderRef}>
@@ -248,7 +254,7 @@ const MakePlan = () => {
         </div>
       )}
 
-      {!loading && !error && (
+      {!loading && !error && onMount && (
         <div className="result-plan-section" ref={planRef}>
           <div className="result-plan-header">
             <h2>Your Trip Plan is Ready!</h2>
