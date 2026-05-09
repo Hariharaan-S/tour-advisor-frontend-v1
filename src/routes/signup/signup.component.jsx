@@ -38,7 +38,7 @@ const Signup = () => {
                     onChange={(e) => handleLanguageChange(e.target.value)}
                 >
                     <option value="English">English</option>
-                    <option value="Tamil">Tamil</option>
+                    <option value="Tamil">தமிழ்</option>
                 </select>
             </div>
 
@@ -56,7 +56,7 @@ const Signup = () => {
                     </div>
                     <h2 className="signup-hero-title">{t("Join Us")}</h2>
                     <p className="signup-hero-description">
-                        {t("signup_description")}
+                        {t("Sign up description")}
                     </p>
                 </div>
 

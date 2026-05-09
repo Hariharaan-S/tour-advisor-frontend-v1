@@ -35,7 +35,7 @@ const Login = () => {
                     onChange={(e) => handleLanguageChange(e.target.value)}
                 >
                     <option value="English">English</option>
-                    <option value="Tamil">Tamil</option>
+                    <option value="Tamil">தமிழ்</option>
                 </select>
             </div>
             <div className="login-overlay"></div>

@@ -180,7 +180,7 @@ const Navbar = () => {
           }}
         >
           <option value="English">English</option>
-          <option value="Tamil">Tamil</option>
+          <option value="Tamil">தமிழ்</option>
         </select>
       </div>
       {isLoggedIn ? (
